@@ -1,0 +1,28 @@
+.osinergmin-page {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.osinergmin-page .catalog-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-600);
+  margin: var(--spacing-xs) 0 0 0;
+}
+
+@media (max-width: 768px) {
+  .osinergmin-page {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .osinergmin-page {
+    padding: var(--spacing-sm);
+  }
+
+  .osinergmin-page .catalog-subtitle {
+    font-size: var(--font-size-xs);
+  }
+}

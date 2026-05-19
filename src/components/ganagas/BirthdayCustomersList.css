@@ -1,0 +1,160 @@
+.birthday-list {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.birthday-list__loading {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+}
+
+.birthday-list__empty {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+}
+
+.birthday-list__empty-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.birthday-list__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.birthday-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.birthday-list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-radius: 8px;
+  border: 1px solid #fbbf24;
+}
+
+.birthday-list__customer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.birthday-list__customer-name {
+  font-weight: 600;
+  color: #92400e;
+}
+
+.birthday-list__customer-address {
+  font-size: 0.8rem;
+  color: #78350f;
+  line-height: 1.3;
+}
+
+.birthday-list__customer-district {
+  font-size: 0.75rem;
+  color: #a16207;
+  font-style: italic;
+}
+
+.birthday-list__customer-phone {
+  font-size: 0.875rem;
+  color: #a16207;
+}
+
+.birthday-list__customer-balance {
+  font-size: 0.75rem;
+  color: #a16207;
+}
+
+.birthday-list__auto-note {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: -0.5rem 0 0.75rem 0;
+  font-style: italic;
+}
+
+.birthday-list__pending-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: #fef3c7;
+  color: #92400e;
+  padding: 0.5rem 0.875rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid #fbbf24;
+}
+
+.birthday-list__pending-icon {
+  font-size: 0.875rem;
+}
+
+.birthday-list__pending-text {
+  white-space: nowrap;
+}
+
+/* Estado cuando ya se otorgo el bono */
+.birthday-list__item--granted {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  border-color: #86efac;
+}
+
+.birthday-list__item--granted .birthday-list__customer-name {
+  color: #166534;
+}
+
+.birthday-list__item--granted .birthday-list__customer-address {
+  color: #166534;
+}
+
+.birthday-list__item--granted .birthday-list__customer-district,
+.birthday-list__item--granted .birthday-list__customer-phone,
+.birthday-list__item--granted .birthday-list__customer-balance {
+  color: #15803d;
+}
+
+.birthday-list__granted-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  padding: 0.625rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
+}
+
+.birthday-list__granted-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.birthday-list__granted-text {
+  white-space: nowrap;
+}

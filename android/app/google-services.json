@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "558244429823",
+    "firebase_url": "https://aloganagas-d9cd7.firebaseio.com",
+    "project_id": "aloganagas-d9cd7",
+    "storage_bucket": "aloganagas-d9cd7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558244429823:android:f5be467c2d659139b8b1ca",
+        "android_client_info": {
+          "package_name": "pe.aloganagas.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGvxVCKbFTPGOO8NH6OBy63llciay_Bbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

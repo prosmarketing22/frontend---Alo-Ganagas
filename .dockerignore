@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log*
+.env
+.env.local
+.env.*.local
+dist
+__tests__
+jest.config.js
+playwright.config.js
+.git
+.gitignore
+railway.json
+README.md
+*.md

@@ -1,0 +1,26 @@
+{
+  "appId": "pe.aloganagas.app",
+  "appName": "Aló Ganagas - Cliente",
+  "webDir": "dist-cliente",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": false,
+    "allowNavigation": [
+      "aloganagas.com.pe",
+      "*.aloganagas.com.pe"
+    ]
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": true
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  }
+}

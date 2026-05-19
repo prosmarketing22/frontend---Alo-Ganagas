@@ -1,0 +1,213 @@
+.ganagas-summary {
+  padding: 1rem 0;
+}
+
+.ganagas-summary__loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.ganagas-summary__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ganagas-summary__card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid;
+}
+
+.ganagas-summary__card--earned {
+  border-left-color: #22c55e;
+}
+
+.ganagas-summary__card--used {
+  border-left-color: #ef4444;
+}
+
+.ganagas-summary__card--balance {
+  border-left-color: #3b82f6;
+}
+
+.ganagas-summary__card--customers {
+  border-left-color: #8b5cf6;
+}
+
+.ganagas-summary__card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.ganagas-summary__card--earned .ganagas-summary__card-icon {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.ganagas-summary__card--used .ganagas-summary__card-icon {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.ganagas-summary__card--balance .ganagas-summary__card-icon {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.ganagas-summary__card--customers .ganagas-summary__card-icon {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.ganagas-summary__card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ganagas-summary__card-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.ganagas-summary__card-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.ganagas-summary__top {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.ganagas-summary__top-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 1rem 0;
+}
+
+.ganagas-summary__top-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ganagas-summary__top-item {
+  display: grid;
+  grid-template-columns: 32px 1fr auto auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.ganagas-summary__top-rank {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.ganagas-summary__top-item:nth-child(n+4) .ganagas-summary__top-rank {
+  background: #e5e7eb;
+  color: #6b7280;
+}
+
+.ganagas-summary__top-customer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ganagas-summary__top-name {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.ganagas-summary__top-address {
+  font-size: 0.75rem;
+  color: #4b5563;
+  line-height: 1.3;
+}
+
+.ganagas-summary__top-district {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.ganagas-summary__top-phone {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.ganagas-summary__top-balance {
+  font-weight: 600;
+  color: #22c55e;
+}
+
+/* ─── RESPONSIVE 768px ──────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ganagas-summary__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ganagas-summary__top-item {
+    grid-template-columns: 32px 1fr auto;
+    gap: 0.75rem;
+  }
+
+  .ganagas-summary__top-phone {
+    display: none;
+  }
+}
+
+/* ─── RESPONSIVE 480px ──────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .ganagas-summary__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .ganagas-summary__card {
+    padding: 1rem;
+  }
+
+  .ganagas-summary__card-value {
+    font-size: 1.25rem;
+  }
+
+  .ganagas-summary__top-item {
+    grid-template-columns: 28px 1fr auto;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .ganagas-summary__top-name {
+    font-size: 0.875rem;
+  }
+
+  .ganagas-summary__top-address {
+    font-size: 0.7rem;
+  }
+}

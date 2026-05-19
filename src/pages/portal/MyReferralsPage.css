@@ -1,0 +1,232 @@
+.my-referrals-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.my-referrals-page__loading {
+  text-align: center;
+  padding: 60px;
+  font-size: 18px;
+  color: white;
+}
+
+.my-referrals-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.my-referrals-page__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.my-referrals-page__back {
+  padding: 10px 20px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  color: #667eea;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.my-referrals-page__back:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.my-referrals-page__share {
+  margin-bottom: 24px;
+}
+
+.my-referrals-page__section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.my-referrals-page__section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.my-referrals-page__empty {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.my-referrals-page__empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.my-referrals-page__empty-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.my-referrals-page__empty-description {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.my-referrals-page__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.my-referrals-page__item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.my-referrals-page__item:hover {
+  background: #f3f4f6;
+}
+
+.my-referrals-page__item-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.my-referrals-page__item-info {
+  flex: 1;
+}
+
+.my-referrals-page__item-name {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.my-referrals-page__item-date {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.my-referrals-page__item-status {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.my-referrals-page__item-status--active {
+  background: #d1fae5;
+  color: #059669;
+}
+
+@media (max-width: 768px) {
+  .my-referrals-page__title {
+    font-size: 24px;
+  }
+
+  .my-referrals-page__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .my-referrals-page__back {
+    width: 100%;
+    text-align: center;
+  }
+
+  .my-referrals-page__item {
+    flex-wrap: wrap;
+  }
+
+  .my-referrals-page__item-status {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .my-referrals-page__title {
+    font-size: 20px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .my-referrals-page__section {
+    padding: 16px;
+  }
+
+  .my-referrals-page__section-title {
+    font-size: 17px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .my-referrals-page__item {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .my-referrals-page__item-info {
+    min-width: 0;
+  }
+
+  .my-referrals-page__item-name {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .my-referrals-page__item-date {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .my-referrals-page__item-status {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .my-referrals-page__item-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .my-referrals-page__empty-text {
+    font-size: 17px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .my-referrals-page__empty-description {
+    font-size: 14px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}

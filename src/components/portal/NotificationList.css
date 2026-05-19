@@ -1,0 +1,157 @@
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.notification-list--empty {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.notification-list__empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.notification-list__empty-text {
+  font-size: 18px;
+  color: #6b7280;
+}
+
+.notification-list__item {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.notification-list__item--unread {
+  background: #eff6ff;
+  border-left: 4px solid #667eea;
+}
+
+.notification-list__item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.notification-list__icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.notification-list__content {
+  flex: 1;
+}
+
+.notification-list__title {
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.notification-list__message {
+  color: #4b5563;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.notification-list__date {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.notification-list__actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.notification-list__mark-button,
+.notification-list__delete-button {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.notification-list__mark-button:hover {
+  background: #10b981;
+  color: white;
+  border-color: #10b981;
+}
+
+.notification-list__delete-button:hover {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+/* === TABLET (768px) === */
+@media (max-width: 768px) {
+  .notification-list__item {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .notification-list__icon {
+    font-size: 28px;
+  }
+
+  .notification-list__title {
+    font-size: 14px;
+  }
+
+  .notification-list__message {
+    font-size: 13px;
+  }
+}
+
+/* === SMALL MOBILE (480px) === */
+@media (max-width: 480px) {
+  .notification-list--empty {
+    padding: 40px 16px;
+  }
+
+  .notification-list__empty-icon {
+    font-size: 48px;
+  }
+
+  .notification-list__empty-text {
+    font-size: 15px;
+  }
+
+  .notification-list__item {
+    flex-wrap: wrap;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .notification-list__icon {
+    font-size: 24px;
+  }
+
+  .notification-list__content {
+    min-width: 0;
+    flex-basis: calc(100% - 44px);
+  }
+
+  .notification-list__actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .notification-list__mark-button,
+  .notification-list__delete-button {
+    width: 36px;
+    height: 36px;
+  }
+}

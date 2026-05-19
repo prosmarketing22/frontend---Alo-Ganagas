@@ -1,0 +1,118 @@
+.order-timeline {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+}
+
+.order-timeline__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.order-timeline__step {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  border: 3px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.order-timeline__step--completed {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-color: #10b981;
+}
+
+.order-timeline__step--current {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  animation: pulse 2s infinite;
+}
+
+.order-timeline__icon {
+  font-size: 24px;
+}
+
+.order-timeline__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  text-align: center;
+}
+
+.order-timeline__step--completed + .order-timeline__label,
+.order-timeline__step--current + .order-timeline__label {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.order-timeline__line {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  right: -50%;
+  height: 3px;
+  background: #d1d5db;
+  z-index: 1;
+}
+
+.order-timeline__line--completed {
+  background: #10b981;
+}
+
+.order-timeline__item:last-child .order-timeline__line {
+  display: none;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .order-timeline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .order-timeline__item {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .order-timeline__step {
+    margin-bottom: 0;
+    margin-right: 12px;
+  }
+
+  .order-timeline__label {
+    flex: 1;
+    text-align: left;
+  }
+
+  .order-timeline__line {
+    top: 50%;
+    left: 25px;
+    right: auto;
+    bottom: -50%;
+    width: 3px;
+    height: auto;
+  }
+}

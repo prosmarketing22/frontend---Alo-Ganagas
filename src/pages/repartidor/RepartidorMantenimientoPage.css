@@ -1,0 +1,1400 @@
+/* ========================================
+   REPARTIDOR MANTENIMIENTO PAGE
+   Seccion de Mantenimientos - Diseño profesional
+   ======================================== */
+
+.mantenimiento-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.mantenimiento-page__container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+.mantenimiento-page__header {
+  margin-bottom: 1.25rem;
+}
+
+.mantenimiento-page__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: #64748b;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.375rem 0;
+  margin-bottom: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.mantenimiento-page__back-btn:hover {
+  color: #f97316;
+}
+
+.mantenimiento-page__back-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.mantenimiento-page__title-section {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.3);
+}
+
+.mantenimiento-page__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mantenimiento-page__title-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mantenimiento-page__title-icon {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.625rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mantenimiento-page__title-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+}
+
+.mantenimiento-page__title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.mantenimiento-page__subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.mantenimiento-page__stats-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mantenimiento-page__stats-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+}
+
+.mantenimiento-page__stats-label {
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ========================================
+   FILTERS SECTION
+   ======================================== */
+.mantenimiento-page__filters {
+  background: white;
+  border-radius: 0.625rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+}
+
+.mantenimiento-page__date-filter {
+  margin-bottom: 1rem;
+}
+
+.mantenimiento-page__date-label {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.5rem;
+}
+
+.mantenimiento-page__date-label svg {
+  width: 1rem;
+  height: 1rem;
+  color: #94a3b8;
+}
+
+.mantenimiento-page__date-input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #1e293b;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.mantenimiento-page__date-input:focus {
+  outline: none;
+  border-color: #f97316;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.mantenimiento-page__status-filters {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.mantenimiento-page__filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 2rem;
+  border: 1px solid #e2e8f0;
+  background: white;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.mantenimiento-page__filter-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.mantenimiento-page__filter-btn svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.mantenimiento-page__filter-btn--active {
+  border-color: transparent;
+  color: white;
+}
+
+.mantenimiento-page__filter-btn--all.mantenimiento-page__filter-btn--active {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.mantenimiento-page__filter-btn--pendiente.mantenimiento-page__filter-btn--active {
+  background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+}
+
+.mantenimiento-page__filter-btn--proceso.mantenimiento-page__filter-btn--active {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.mantenimiento-page__filter-btn--completado.mantenimiento-page__filter-btn--active {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+/* ========================================
+   RESULTS INFO
+   ======================================== */
+.mantenimiento-page__results-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.875rem;
+  padding: 0 0.25rem;
+}
+
+.mantenimiento-page__results-count {
+  font-size: 0.8125rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ========================================
+   MAINTENANCE CARDS
+   ======================================== */
+.mantenimiento-page__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.maintenance-card {
+  background: white;
+  border-radius: 0.625rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+  transition: all 0.2s ease;
+}
+
+.maintenance-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.maintenance-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.875rem;
+}
+
+.maintenance-card__type-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.maintenance-card__type-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.maintenance-card__type-icon svg {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+.maintenance-card__type-icon--preventivo {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  color: #3b82f6;
+}
+
+.maintenance-card__type-icon--correctivo {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  color: #ef4444;
+}
+
+.maintenance-card__type-icon--inspeccion {
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+  color: #8b5cf6;
+}
+
+.maintenance-card__type-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.125rem;
+}
+
+.maintenance-card__customer-name {
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+
+.maintenance-card__status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 1rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.maintenance-card__status-badge svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.maintenance-card__status-badge--pendiente {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.maintenance-card__status-badge--proceso {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.maintenance-card__status-badge--completado {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.maintenance-card__status-badge--cancelado {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.maintenance-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.875rem;
+}
+
+.maintenance-card__detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+}
+
+.maintenance-card__detail-icon {
+  color: #94a3b8;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.maintenance-card__detail-icon svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.maintenance-card__detail-text {
+  color: #475569;
+}
+
+.maintenance-card__description {
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 0.875rem;
+  border: 1px solid #e2e8f0;
+}
+
+.maintenance-card__description-title {
+  font-size: 0.6875rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.375rem;
+}
+
+.maintenance-card__description-text {
+  font-size: 0.8125rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.maintenance-card__actions {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.maintenance-card__action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.maintenance-card__action-btn svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.maintenance-card__action-btn--start {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.maintenance-card__action-btn--start:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.35);
+}
+
+.maintenance-card__action-btn--complete {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
+}
+
+.maintenance-card__action-btn--complete:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.35);
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+.mantenimiento-page__empty {
+  background: white;
+  border-radius: 0.625rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+}
+
+.mantenimiento-page__empty-icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.mantenimiento-page__empty-icon svg {
+  width: 2.25rem;
+  height: 2.25rem;
+  color: #f97316;
+}
+
+.mantenimiento-page__empty-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.375rem;
+}
+
+.mantenimiento-page__empty-text {
+  font-size: 0.875rem;
+  color: #64748b;
+  max-width: 300px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ========================================
+   LOADING STATE
+   ======================================== */
+.mantenimiento-page__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+}
+
+.mantenimiento-page__spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 4px solid #ffedd5;
+  border-top-color: #f97316;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.mantenimiento-page__loading-text {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ========================================
+   MODAL
+   ======================================== */
+.service-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.service-modal {
+  background: white;
+  border-radius: 0.75rem;
+  width: 100%;
+  max-width: 28rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.service-modal__header {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.service-modal__title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.service-modal__title svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.service-modal__close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.service-modal__close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.service-modal__close-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.service-modal__body {
+  padding: 1.25rem;
+}
+
+.service-modal__customer-info {
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  padding: 0.875rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #e2e8f0;
+}
+
+.service-modal__customer-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.service-modal__customer-detail {
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+
+.service-modal__service-type {
+  margin-top: 0.625rem;
+  padding-top: 0.625rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.service-modal__service-type-label {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.service-modal__service-type-value {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #f97316;
+}
+
+.service-modal__section {
+  margin-bottom: 1rem;
+}
+
+.service-modal__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.service-modal__label-required {
+  color: #ef4444;
+}
+
+.service-modal__textarea {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #1e293b;
+  background: #f8fafc;
+  resize: vertical;
+  min-height: 5rem;
+  transition: all 0.2s ease;
+}
+
+.service-modal__textarea:focus {
+  outline: none;
+  border-color: #f97316;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.service-modal__input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #1e293b;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.service-modal__input:focus {
+  outline: none;
+  border-color: #f97316;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.service-modal__input-hint {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+  margin-top: 0.375rem;
+}
+
+.service-modal__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.service-modal__cancel-btn {
+  flex: 1;
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.service-modal__cancel-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.service-modal__submit-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
+}
+
+.service-modal__submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.35);
+}
+
+.service-modal__submit-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ========================================
+   MODAL LARGE
+   ======================================== */
+.service-modal--large {
+  max-width: 32rem;
+}
+
+/* ========================================
+   RADIO GROUP
+   ======================================== */
+.service-modal__radio-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.service-modal__radio-option {
+  flex: 1;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.75rem 0.5rem;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.service-modal__radio-option input[type="radio"] {
+  display: none;
+}
+
+.service-modal__radio-option span {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.service-modal__radio-option--selected {
+  background: white;
+  border-color: #f97316;
+}
+
+.service-modal__radio-option--selected span {
+  color: #1e293b;
+}
+
+.service-modal__radio-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-modal__radio-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.service-modal__radio-icon--ok {
+  background: #dcfce7;
+  color: #22c55e;
+}
+
+.service-modal__radio-icon--warning {
+  background: #fef3c7;
+  color: #f59e0b;
+}
+
+.service-modal__radio-icon--error {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* ========================================
+   CHECKBOX
+   ======================================== */
+.service-modal__checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #334155;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.service-modal__checkbox-label input[type="checkbox"] {
+  width: 1.125rem;
+  height: 1.125rem;
+  accent-color: #f97316;
+  cursor: pointer;
+}
+
+.service-modal__textarea--small {
+  min-height: 3rem;
+  margin-top: 0.5rem;
+}
+
+/* ========================================
+   PHONE LINK
+   ======================================== */
+.maintenance-card__phone-link {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.maintenance-card__phone-link:hover {
+  text-decoration: underline;
+}
+
+/* ========================================
+   NOTES SECTION
+   ======================================== */
+.maintenance-card__notes {
+  background: #fffbeb;
+  border-radius: 0.375rem;
+  padding: 0.625rem;
+  margin-top: 0.75rem;
+  border-left: 3px solid #f59e0b;
+}
+
+.maintenance-card__notes-title {
+  font-size: 0.6875rem;
+  color: #92400e;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.maintenance-card__notes-text {
+  font-size: 0.8125rem;
+  color: #78350f;
+  line-height: 1.4;
+}
+
+/* ========================================
+   SPINNER
+   ======================================== */
+.service-modal__spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.service-modal__submit-btn:disabled,
+.service-modal__cancel-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   AVAILABLE SCHEDULES SECTION
+   ======================================== */
+.mantenimiento-page__available-section {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
+  border: 1px solid #fbbf24;
+}
+
+.mantenimiento-page__available-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.mantenimiento-page__available-header:hover {
+  background: rgba(251, 191, 36, 0.2);
+}
+
+.mantenimiento-page__available-header-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mantenimiento-page__available-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+
+.mantenimiento-page__available-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: white;
+}
+
+.mantenimiento-page__available-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #92400e;
+  margin: 0;
+}
+
+.mantenimiento-page__available-subtitle {
+  font-size: 0.75rem;
+  color: #b45309;
+  margin-top: 0.125rem;
+}
+
+.mantenimiento-page__available-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mantenimiento-page__available-badge {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.625rem;
+  border-radius: 1rem;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.mantenimiento-page__available-chevron {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #92400e;
+  transition: transform 0.2s ease;
+}
+
+.mantenimiento-page__available-chevron--expanded {
+  transform: rotate(180deg);
+}
+
+.mantenimiento-page__available-list {
+  padding: 0 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Available Schedule Card */
+.available-schedule-card {
+  background: white;
+  border-radius: 0.625rem;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #fde68a;
+  transition: all 0.2s ease;
+}
+
+.available-schedule-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.available-schedule-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.available-schedule-card__type-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.available-schedule-card__type-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.125rem;
+}
+
+.available-schedule-card__customer-name {
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+
+.available-schedule-card__date-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #92400e;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.375rem 0.625rem;
+  border-radius: 0.375rem;
+  text-transform: uppercase;
+}
+
+.available-schedule-card__date-badge svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.available-schedule-card__pending-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1d4ed8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.375rem 0.625rem;
+  border-radius: 0.375rem;
+}
+
+.available-schedule-card__pending-badge svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.available-schedule-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-bottom: 0.75rem;
+}
+
+.available-schedule-card__detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+}
+
+.available-schedule-card__detail-icon {
+  color: #94a3b8;
+  flex-shrink: 0;
+  margin-top: 0.0625rem;
+}
+
+.available-schedule-card__detail-icon svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.available-schedule-card__detail-text {
+  color: #475569;
+  line-height: 1.4;
+}
+
+.available-schedule-card__description {
+  background: #f8fafc;
+  border-radius: 0.375rem;
+  padding: 0.625rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid #e2e8f0;
+}
+
+.available-schedule-card__description-text {
+  font-size: 0.8125rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.available-schedule-card__assign-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+
+.available-schedule-card__assign-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(245, 158, 11, 0.4);
+}
+
+.available-schedule-card__assign-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.available-schedule-card__assign-btn svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.available-schedule-card__spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 640px) {
+  .mantenimiento-page__container {
+    padding: 1rem;
+  }
+
+  .mantenimiento-page__title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.875rem;
+  }
+
+  .mantenimiento-page__status-filters {
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .maintenance-card__header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .maintenance-card__status-badge {
+    align-self: flex-start;
+  }
+
+  .service-modal__radio-group {
+    flex-direction: column;
+  }
+
+  .service-modal__radio-option {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    padding: 0.625rem 0.875rem;
+  }
+
+  .mantenimiento-page__available-header {
+    padding: 0.875rem 1rem;
+  }
+
+  .mantenimiento-page__available-header-content {
+    gap: 0.625rem;
+  }
+
+  .mantenimiento-page__available-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .mantenimiento-page__available-title {
+    font-size: 0.9375rem;
+  }
+
+  .available-schedule-card__header {
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .available-schedule-card__date-badge {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .mantenimiento-page__container {
+    padding: 0.75rem;
+  }
+
+  .mantenimiento-page__title-section {
+    padding: 1rem;
+  }
+
+  .mantenimiento-page__title {
+    font-size: 1.0625rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .mantenimiento-page__subtitle {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .mantenimiento-page__stats-badge {
+    padding: 0.375rem 0.75rem;
+  }
+
+  .mantenimiento-page__stats-value {
+    font-size: 1rem;
+    overflow-wrap: break-word;
+  }
+
+  .mantenimiento-page__stats-label {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .mantenimiento-page__filters {
+    padding: 0.75rem;
+  }
+
+  .maintenance-card {
+    padding: 0.875rem;
+  }
+
+  .maintenance-card__type-name {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .maintenance-card__customer-name {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .maintenance-card__detail-text {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .maintenance-card__description-text {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .maintenance-card__notes-text {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .maintenance-card__status-badge {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .maintenance-card__phone-link {
+    overflow-wrap: break-word;
+    word-break: break-all;
+  }
+
+  .maintenance-card__actions {
+    flex-direction: column;
+  }
+
+  .maintenance-card__action-btn {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .service-modal {
+    max-width: 100%;
+    border-radius: 0.75rem 0.75rem 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .service-modal__overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .service-modal__customer-name {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .service-modal__customer-detail {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .service-modal__service-type-value {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .service-modal__actions {
+    flex-direction: column;
+  }
+
+  .available-schedule-card__type-name {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .available-schedule-card__customer-name {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .available-schedule-card__detail-text {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .available-schedule-card__description-text {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .available-schedule-card__date-badge {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .available-schedule-card__pending-badge {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .mantenimiento-page__available-title {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .mantenimiento-page__available-subtitle {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}

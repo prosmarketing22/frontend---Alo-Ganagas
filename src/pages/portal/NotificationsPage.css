@@ -1,0 +1,130 @@
+.notifications-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.notifications-page__loading {
+  text-align: center;
+  padding: 60px;
+  font-size: 18px;
+  color: white;
+}
+
+.notifications-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.notifications-page__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.notifications-page__back {
+  padding: 10px 20px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  color: #667eea;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.notifications-page__back:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notifications-page__actions {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notifications-page__unread-count {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.notifications-page__mark-all {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #667eea;
+  border-radius: 6px;
+  color: #667eea;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.notifications-page__mark-all:hover {
+  background: #667eea;
+  color: white;
+}
+
+.notifications-page__list {
+  /* NotificationList component handles its own styling */
+}
+
+@media (max-width: 768px) {
+  .notifications-page__title {
+    font-size: 24px;
+  }
+
+  .notifications-page__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .notifications-page__actions {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .notifications-page__mark-all {
+    width: 100%;
+  }
+
+  .notifications-page__back {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .notifications-page__title {
+    font-size: 20px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .notifications-page__actions {
+    padding: 12px 16px;
+  }
+
+  .notifications-page__unread-count {
+    font-size: 14px;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .notifications-page__mark-all {
+    padding: 10px 12px;
+    font-size: 13px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}

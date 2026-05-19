@@ -1,0 +1,280 @@
+/* ========================================
+   WAYS TO EARN - Programa de Recompensas
+   Desktop: fondo blanco con lista numerada
+   Mobile: fondo azul oscuro con iconos y chevrons
+   ======================================== */
+
+/* === DESKTOP (default) === */
+
+.ways-to-earn {
+  margin-top: 32px;
+  padding: 28px 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.ways-to-earn__loading {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+}
+
+/* Desktop header */
+.ways-to-earn__header-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: #3b82f6;
+  letter-spacing: 0.5px;
+  margin: 0 0 4px;
+}
+
+.ways-to-earn__title-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px;
+  font-style: italic;
+}
+
+.ways-to-earn__subtitle-text {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 24px;
+  font-style: italic;
+}
+
+/* Mobile header: oculto en desktop */
+.ways-to-earn__header-mobile {
+  display: none;
+}
+
+.ways-to-earn__gift-icon {
+  width: 24px;
+  height: 24px;
+  color: #fbbf24;
+  flex-shrink: 0;
+}
+
+/* Items list */
+.ways-to-earn__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ways-to-earn__item {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.ways-to-earn__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Desktop: numero + emoji */
+.ways-to-earn__item-number {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.ways-to-earn__item-emoji {
+  font-size: 16px;
+}
+
+.ways-to-earn__item-subtitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 4px 0 4px;
+}
+
+.ways-to-earn__item-description {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Mobile elements: ocultos en desktop */
+.ways-to-earn__item-icon-mobile {
+  display: none;
+}
+
+.ways-to-earn__item-title-mobile {
+  display: none;
+}
+
+.ways-to-earn__chevron {
+  display: none;
+}
+
+/* Desktop footer */
+.ways-to-earn__footer-text {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.ways-to-earn__footer-icon {
+  font-size: 16px;
+}
+
+/* ========================================
+   MOBILE: fondo azul oscuro con iconos
+   ======================================== */
+
+@media (max-width: 767px) {
+  .ways-to-earn {
+    margin-top: 0;
+    padding: 24px;
+    background: linear-gradient(135deg, #1e2a4a 0%, #2d1b69 50%, #1a1145 100%);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .ways-to-earn__loading {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* Ocultar desktop header */
+  .ways-to-earn__header-text,
+  .ways-to-earn__title-text,
+  .ways-to-earn__subtitle-text {
+    display: none;
+  }
+
+  /* Mostrar mobile header */
+  .ways-to-earn__header-mobile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .ways-to-earn__header-mobile-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    letter-spacing: 0.2px;
+  }
+
+  /* Items como filas clickeables */
+  .ways-to-earn__list {
+    gap: 2px;
+  }
+
+  .ways-to-earn__item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .ways-to-earn__item:hover {
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .ways-to-earn__item:last-child {
+    padding-bottom: 14px;
+  }
+
+  /* Ocultar desktop elements */
+  .ways-to-earn__item-number,
+  .ways-to-earn__item-subtitle,
+  .ways-to-earn__item-description {
+    display: none;
+  }
+
+  /* Mostrar mobile elements */
+  .ways-to-earn__item-icon-mobile {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ways-to-earn__item-icon-mobile svg {
+    width: 20px;
+    height: 20px;
+    color: #a5b4fc;
+  }
+
+  .ways-to-earn__item-title-mobile {
+    display: block;
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.4;
+  }
+
+  .ways-to-earn__item-title-mobile strong {
+    font-weight: 700;
+    color: white;
+  }
+
+  .ways-to-earn__chevron {
+    display: block;
+    width: 16px;
+    height: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
+  }
+
+  /* Ocultar desktop footer */
+  .ways-to-earn__footer-text {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .ways-to-earn {
+    padding: 20px 16px;
+  }
+
+  .ways-to-earn__header-mobile-title {
+    font-size: 15px;
+  }
+
+  .ways-to-earn__item {
+    padding: 12px 10px;
+    gap: 12px;
+  }
+
+  .ways-to-earn__item-icon-mobile {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ways-to-earn__item-icon-mobile svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .ways-to-earn__item-title-mobile {
+    font-size: 13px;
+  }
+}

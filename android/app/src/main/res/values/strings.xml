@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Aló Ganagas - Cliente</string>
+    <string name="title_activity_main">Aló Ganagas - Cliente</string>
+    <string name="package_name">pe.aloganagas.app</string>
+    <string name="custom_url_scheme">pe.aloganagas.app</string>
+</resources>

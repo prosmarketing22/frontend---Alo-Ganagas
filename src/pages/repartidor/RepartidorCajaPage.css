@@ -1,0 +1,851 @@
+.caja-page {
+  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.caja-page__header {
+  margin-bottom: 1.5rem;
+}
+
+.caja-page__header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+  color: #212529;
+}
+
+.caja-page__header p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* Loading */
+.caja-page__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  color: #6c757d;
+}
+
+.caja-page__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e9ecef;
+  border-top-color: #2196f3;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Tabs */
+.caja-page__tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e9ecef;
+  margin-bottom: 1.5rem;
+}
+
+.caja-page__tab {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: #6c757d;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.caja-page__tab:hover {
+  color: #2196f3;
+}
+
+.caja-page__tab--active {
+  color: #2196f3;
+  border-bottom-color: #2196f3;
+}
+
+/* No register */
+.caja-page__no-register {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.caja-page__no-register-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  color: #6c757d;
+}
+
+.caja-page__no-register-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.caja-page__no-register h3 {
+  margin: 0 0 0.5rem;
+  color: #212529;
+  font-size: 1.25rem;
+}
+
+.caja-page__no-register p {
+  margin: 0 0 1.5rem;
+  color: #6c757d;
+}
+
+.caja-page__btn-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.caja-page__btn-open:hover {
+  background: #218838;
+}
+
+.caja-page__btn-open svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Open form */
+.caja-page__open-form {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.caja-page__open-form h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+}
+
+.caja-page__open-form > p {
+  margin: 0 0 1.5rem;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.caja-page__error {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.caja-page__balances-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.caja-page__balances-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.caja-page__balances-header h4 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.caja-page__btn-add {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.375rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.caja-page__btn-add:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.caja-page__balance-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.caja-page__balance-row select {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.caja-page__amount-input {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: white;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 0 0.5rem;
+  width: 130px;
+}
+
+.caja-page__amount-input span {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.caja-page__amount-input input {
+  border: none;
+  padding: 0.5rem 0;
+  width: 100%;
+  text-align: right;
+}
+
+.caja-page__amount-input input:focus {
+  outline: none;
+}
+
+.caja-page__btn-remove {
+  background: #dc3545;
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.caja-page__field {
+  margin-bottom: 1rem;
+}
+
+.caja-page__field label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.caja-page__field textarea {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-family: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.caja-page__form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.caja-page__btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.caja-page__btn--cancel {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.caja-page__btn--primary {
+  background: #28a745;
+  color: white;
+}
+
+.caja-page__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Active register */
+.caja-page__active {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.caja-page__register-header {
+  background: linear-gradient(135deg, #2196f3, #1976d2);
+  color: white;
+  padding: 1.25rem;
+}
+
+.caja-page__register-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.caja-page__register-info h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.caja-page__register-header p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Status */
+.caja-page__status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.caja-page__status--open {
+  background: rgba(40, 167, 69, 0.2);
+  color: #d4edda;
+}
+
+.caja-page__status--closed {
+  background: rgba(108, 117, 125, 0.3);
+  color: #e9ecef;
+}
+
+.caja-page__status--pending {
+  background: rgba(255, 193, 7, 0.3);
+  color: #fff3cd;
+}
+
+.caja-page__status--approved {
+  background: rgba(40, 167, 69, 0.2);
+  color: #d4edda;
+}
+
+.caja-page__status--observed {
+  background: rgba(220, 53, 69, 0.3);
+  color: #f8d7da;
+}
+
+/* Alert */
+.caja-page__alert {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.caja-page__alert--warning {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  color: #856404;
+}
+
+.caja-page__alert strong {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.caja-page__alert p {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.caja-page__observation {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin: 0.5rem 0;
+}
+
+.caja-page__observation small {
+  display: block;
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+.caja-page__justify-form {
+  margin-top: 1rem;
+}
+
+.caja-page__justify-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-family: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
+}
+
+.caja-page__justify-form button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.caja-page__justify-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Summary */
+.caja-page__summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #f8f9fa;
+}
+
+.caja-page__summary-card {
+  text-align: center;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 8px;
+}
+
+.caja-page__summary-card span {
+  display: block;
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+.caja-page__summary-card strong {
+  font-size: 1.1rem;
+  color: #212529;
+}
+
+.caja-page__summary-card--income strong {
+  color: #28a745;
+}
+
+.caja-page__summary-card--expense strong {
+  color: #dc3545;
+}
+
+.caja-page__summary-card--total {
+  background: #e3f2fd;
+}
+
+.caja-page__summary-card--total strong {
+  color: #1976d2;
+}
+
+/* Income breakdown by payment method */
+.caja-page__income-breakdown {
+  padding: 1rem;
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  border-bottom: 1px solid #a5d6a7;
+}
+
+.caja-page__income-breakdown h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.caja-page__income-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.caja-page__income-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 0.875rem 1.25rem;
+  border-radius: 10px;
+  min-width: 100px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #4caf50;
+}
+
+.caja-page__income-item--total {
+  background: #2e7d32;
+  border-left: none;
+}
+
+.caja-page__income-item--total .caja-page__income-method,
+.caja-page__income-item--total .caja-page__income-amount {
+  color: white;
+}
+
+.caja-page__income-method {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.caja-page__income-amount {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2e7d32;
+}
+
+/* Balances table */
+.caja-page__balances {
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.caja-page__balances h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: #495057;
+}
+
+.caja-page__balances-table {
+  overflow-x: auto;
+}
+
+.caja-page__balances-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.caja-page__balances-table th,
+.caja-page__balances-table td {
+  padding: 0.625rem 0.5rem;
+  text-align: right;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.caja-page__balances-table th:first-child,
+.caja-page__balances-table td:first-child {
+  text-align: left;
+}
+
+.caja-page__balances-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+.caja-page__amount--income {
+  color: #28a745;
+}
+
+.caja-page__amount--expense {
+  color: #dc3545;
+}
+
+/* Expenses */
+.caja-page__expenses {
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.caja-page__expenses h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: #495057;
+}
+
+.caja-page__expenses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.caja-page__expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625rem;
+  background: #fff8e1;
+  border-left: 3px solid #ffc107;
+  border-radius: 0 6px 6px 0;
+}
+
+.caja-page__expense-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.caja-page__expense-info strong {
+  font-size: 0.9rem;
+}
+
+.caja-page__expense-info span {
+  font-size: 0.8rem;
+  color: #495057;
+}
+
+.caja-page__expense-info small {
+  font-size: 0.7rem;
+  color: #6c757d;
+}
+
+.caja-page__expense-amount {
+  font-weight: 600;
+  color: #dc3545;
+}
+
+/* Actions */
+.caja-page__actions {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.caja-page__action-btn {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.caja-page__action-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.caja-page__action-btn--info {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.caja-page__action-btn--info:hover {
+  background: #dee2e6;
+}
+
+.caja-page__action-btn--warning {
+  background: #ffc107;
+  color: #212529;
+}
+
+.caja-page__action-btn--warning:hover {
+  background: #e0a800;
+}
+
+.caja-page__action-btn--danger {
+  background: #dc3545;
+  color: white;
+}
+
+.caja-page__action-btn--danger:hover {
+  background: #c82333;
+}
+
+/* Pending info */
+.caja-page__pending-info {
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+}
+
+.caja-page__pending-info svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.75rem;
+}
+
+.caja-page__pending-info p {
+  margin: 0 0 1rem;
+}
+
+.caja-page__btn-movements {
+  background: #e9ecef;
+  color: #495057;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* History */
+.caja-page__history {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.caja-page__empty {
+  text-align: center;
+  padding: 3rem;
+  color: #6c757d;
+}
+
+.caja-page__history-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.caja-page__history-item {
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.caja-page__history-item:last-child {
+  border-bottom: none;
+}
+
+.caja-page__history-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.caja-page__history-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.caja-page__history-info strong {
+  font-size: 0.95rem;
+}
+
+.caja-page__history-info span {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.caja-page__history .caja-page__status {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.caja-page__history .caja-page__status--approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.caja-page__history .caja-page__status--observed {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.caja-page__history-details {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.caja-page__history-details > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.caja-page__history-details small {
+  font-size: 0.7rem;
+  color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .caja-page {
+    padding: 1rem;
+  }
+
+  .caja-page__summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .caja-page__income-grid {
+    justify-content: center;
+  }
+
+  .caja-page__income-item {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .caja-page__actions {
+    flex-direction: column;
+  }
+
+  .caja-page__action-btn {
+    min-width: 100%;
+  }
+
+  .caja-page__history-details {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .caja-page__balance-row {
+    flex-wrap: wrap;
+  }
+
+  .caja-page__balance-row select {
+    flex: none;
+    width: 100%;
+  }
+
+  .caja-page__amount-input {
+    flex: 1;
+  }
+
+  .caja-page__register-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

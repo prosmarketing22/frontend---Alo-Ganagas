@@ -1,0 +1,250 @@
+.orders-page {
+  padding: 24px;
+}
+
+.orders-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.orders-page__title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1f2937;
+}
+
+.orders-page__btn-new,
+.orders-page__btn-back {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.orders-page__btn-new {
+  background: #3b82f6;
+  color: white;
+}
+
+.orders-page__btn-new:hover {
+  background: #2563eb;
+}
+
+.orders-page__btn-back {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.orders-page__btn-back:hover {
+  background: #e5e7eb;
+}
+
+/* Summary Cards */
+.orders-page__summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+  .orders-page__summary {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .orders-page__summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.orders-page__summary-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.orders-page__summary-count {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.orders-page__summary-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.orders-page__summary-card--confirmed {
+  border-left: 4px solid #3b82f6;
+}
+
+.orders-page__summary-card--confirmed .orders-page__summary-count {
+  color: #3b82f6;
+}
+
+.orders-page__summary-card--assigned {
+  border-left: 4px solid #8b5cf6;
+}
+
+.orders-page__summary-card--assigned .orders-page__summary-count {
+  color: #8b5cf6;
+}
+
+.orders-page__summary-card--transit {
+  border-left: 4px solid #ec4899;
+}
+
+.orders-page__summary-card--transit .orders-page__summary-count {
+  color: #ec4899;
+}
+
+.orders-page__summary-card--delivered {
+  border-left: 4px solid #10b981;
+}
+
+.orders-page__summary-card--delivered .orders-page__summary-count {
+  color: #10b981;
+}
+
+/* Filters */
+.orders-page__filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.orders-page__filter-select,
+.orders-page__filter-input {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.orders-page__filter-select:focus,
+.orders-page__filter-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.orders-page__filter-select {
+  min-width: 150px;
+}
+
+.orders-page__filter-input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.orders-page__filter-btn {
+  padding: 10px 20px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.orders-page__filter-btn:hover {
+  background: #2563eb;
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .orders-page {
+    padding: 16px;
+  }
+
+  .orders-page__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .orders-page__btn-new,
+  .orders-page__btn-back {
+    width: 100%;
+    text-align: center;
+  }
+
+  .orders-page__filters {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .orders-page__filter-select,
+  .orders-page__filter-input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .orders-page__filter-btn {
+    width: 100%;
+  }
+
+  .orders-page__summary {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .orders-page__summary-card {
+    padding: 12px;
+  }
+
+  .orders-page__summary-count {
+    font-size: 1.5rem;
+  }
+
+  .orders-page__summary-label {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-page {
+    padding: 12px;
+  }
+
+  .orders-page__title {
+    font-size: 1.25rem;
+  }
+
+  .orders-page__summary {
+    gap: 8px;
+  }
+
+  .orders-page__summary-card {
+    padding: 10px 8px;
+  }
+
+  .orders-page__summary-count {
+    font-size: 1.25rem;
+  }
+
+  .orders-page__summary-label {
+    font-size: 0.65rem;
+  }
+
+  .orders-page__filter-select,
+  .orders-page__filter-input {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,169 @@
+.ganagas-movements {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.ganagas-movements__loading,
+.ganagas-movements__empty {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+}
+
+.ganagas-movements__table-wrapper {
+  overflow-x: auto;
+}
+
+.ganagas-movements__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ganagas-movements__table th,
+.ganagas-movements__table td {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ganagas-movements__table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.ganagas-movements__table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.ganagas-movements__customer {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.ganagas-movements__description {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #6b7280;
+}
+
+.ganagas-movements__badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.ganagas-movements__badge--bono_arranque {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.ganagas-movements__badge--bono_referido {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.ganagas-movements__badge--bono_10_referidos {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.ganagas-movements__badge--bono_lealtad {
+  background: #f3e8ff;
+  color: #6b21a8;
+}
+
+.ganagas-movements__badge--uso_saldo {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.ganagas-movements__badge--ajuste_manual {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.ganagas-movements__amount {
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.ganagas-movements__amount--positive {
+  color: #22c55e;
+}
+
+.ganagas-movements__amount--negative {
+  color: #ef4444;
+}
+
+.ganagas-movements__balance {
+  font-weight: 500;
+  color: #3b82f6;
+}
+
+/* ─── RESPONSIVE 768px ──────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ganagas-movements__table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ganagas-movements__table {
+    min-width: 600px;
+  }
+
+  .ganagas-movements__table th,
+  .ganagas-movements__table td {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .ganagas-movements__description {
+    max-width: 150px;
+  }
+}
+
+/* ─── RESPONSIVE 480px ──────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .ganagas-movements__table th,
+  .ganagas-movements__table td {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .ganagas-movements__description {
+    max-width: 100px;
+  }
+
+  .ganagas-movements__badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .ganagas-movements__description {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: none;
+  }
+
+  .ganagas-movements__customer {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .ganagas-movements__table th,
+  .ganagas-movements__table td {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}

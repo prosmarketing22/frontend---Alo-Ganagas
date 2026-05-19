@@ -1,0 +1,184 @@
+.expense-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.expense-modal {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.expense-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.expense-modal__header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.expense-modal__close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 0.25rem;
+}
+
+.expense-modal__form {
+  padding: 1rem;
+}
+
+.expense-modal__error {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.expense-modal__field {
+  margin-bottom: 1rem;
+}
+
+.expense-modal__field label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.expense-modal__field input,
+.expense-modal__field select {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.expense-modal__field input:focus,
+.expense-modal__field select:focus {
+  outline: none;
+  border-color: #2196f3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.expense-modal__file-input {
+  padding: 0.5rem 0 !important;
+  border: none !important;
+}
+
+.expense-modal__preview {
+  margin-top: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.expense-modal__preview img {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.expense-modal__preview-remove {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.expense-modal__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.expense-modal__btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.expense-modal__btn--cancel {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.expense-modal__btn--submit {
+  background: #ffc107;
+  color: #212529;
+}
+
+.expense-modal__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ─── RESPONSIVE 768px ──────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .expense-modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .expense-modal {
+    max-width: 100%;
+    border-radius: 12px 12px 0 0;
+    max-height: 95vh;
+  }
+}
+
+/* ─── RESPONSIVE 480px ──────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .expense-modal__actions {
+    flex-direction: column;
+  }
+
+  .expense-modal__btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .expense-modal__field input,
+  .expense-modal__field select {
+    font-size: 16px;
+  }
+}

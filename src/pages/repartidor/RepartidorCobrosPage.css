@@ -1,0 +1,899 @@
+/* ========================================
+   REPARTIDOR COBROS PAGE
+   Seccion de Cobros de Balones - Diseño profesional
+   ======================================== */
+
+.cobros-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.cobros-page__container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+.cobros-page__header {
+  margin-bottom: 1.25rem;
+}
+
+.cobros-page__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: #64748b;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.375rem 0;
+  margin-bottom: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.cobros-page__back-btn:hover {
+  color: #3b82f6;
+}
+
+.cobros-page__back-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.cobros-page__title-section {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.3);
+}
+
+.cobros-page__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cobros-page__title-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cobros-page__title-icon {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.625rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cobros-page__title-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+}
+
+.cobros-page__title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cobros-page__subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.cobros-page__stats-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cobros-page__stats-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+}
+
+.cobros-page__stats-label {
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ========================================
+   SEARCH BAR
+   ======================================== */
+.cobros-page__search {
+  background: white;
+  border-radius: 0.625rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+}
+
+.cobros-page__search-form {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.cobros-page__search-input-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.cobros-page__search-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.cobros-page__search-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.cobros-page__search-input {
+  width: 100%;
+  padding: 0.625rem 0.875rem 0.625rem 2.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #1e293b;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.cobros-page__search-input:focus {
+  outline: none;
+  border-color: #22c55e;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.cobros-page__search-input::placeholder {
+  color: #94a3b8;
+}
+
+.cobros-page__search-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.625rem 1rem;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
+}
+
+.cobros-page__search-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.35);
+}
+
+.cobros-page__search-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.cobros-page__clear-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.625rem 0.875rem;
+  background: #f1f5f9;
+  color: #64748b;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cobros-page__clear-btn:hover {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.cobros-page__clear-btn svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* ========================================
+   RESULTS INFO
+   ======================================== */
+.cobros-page__results-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.875rem;
+  padding: 0 0.25rem;
+}
+
+.cobros-page__results-count {
+  font-size: 0.8125rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.cobros-page__search-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  color: #22c55e;
+  font-weight: 600;
+  background: #f0fdf4;
+  padding: 0.25rem 0.625rem;
+  border-radius: 1rem;
+}
+
+.cobros-page__search-indicator svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* ========================================
+   CUSTOMER CARDS
+   ======================================== */
+.cobros-page__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.customer-card {
+  background: white;
+  border-radius: 0.625rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+  transition: all 0.2s ease;
+}
+
+.customer-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.customer-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.875rem;
+}
+
+.customer-card__info {
+  flex: 1;
+}
+
+.customer-card__name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.customer-card__phone {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+
+.customer-card__phone svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  color: #94a3b8;
+}
+
+.customer-card__badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.5rem;
+  border: 1px solid #fed7aa;
+}
+
+.customer-card__badge-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ea580c;
+  line-height: 1;
+}
+
+.customer-card__badge-label {
+  font-size: 0.625rem;
+  color: #c2410c;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.customer-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.875rem;
+}
+
+.customer-card__detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+}
+
+.customer-card__detail-icon {
+  color: #94a3b8;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.customer-card__detail-icon svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.customer-card__detail-text {
+  color: #475569;
+}
+
+.customer-card__detail-text--danger {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.customer-card__loans {
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 0.875rem;
+  border: 1px solid #e2e8f0;
+}
+
+.customer-card__loans-title {
+  font-size: 0.6875rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.customer-card__loan-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.375rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.customer-card__loan-item:last-child {
+  border-bottom: none;
+}
+
+.customer-card__loan-name {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.customer-card__loan-date {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+  margin-left: 0.375rem;
+}
+
+.customer-card__loan-amount {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ea580c;
+}
+
+.customer-card__action-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
+}
+
+.customer-card__action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.35);
+}
+
+.customer-card__action-btn svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+.cobros-page__empty {
+  background: white;
+  border-radius: 0.625rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+}
+
+.cobros-page__empty-icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.cobros-page__empty-icon svg {
+  width: 2.25rem;
+  height: 2.25rem;
+  color: #22c55e;
+}
+
+.cobros-page__empty-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.375rem;
+}
+
+.cobros-page__empty-text {
+  font-size: 0.875rem;
+  color: #64748b;
+  max-width: 300px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ========================================
+   LOADING STATE
+   ======================================== */
+.cobros-page__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+}
+
+.cobros-page__spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 4px solid #dcfce7;
+  border-top-color: #22c55e;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.cobros-page__loading-text {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ========================================
+   MODAL
+   ======================================== */
+.loan-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.loan-modal {
+  background: white;
+  border-radius: 0.75rem;
+  width: 100%;
+  max-width: 28rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.loan-modal__header {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.loan-modal__title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.loan-modal__title svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.loan-modal__close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.loan-modal__close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.loan-modal__close-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.loan-modal__body {
+  padding: 1.25rem;
+}
+
+.loan-modal__customer-info {
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  padding: 0.875rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #e2e8f0;
+}
+
+.loan-modal__customer-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.loan-modal__customer-detail {
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+
+.loan-modal__section {
+  margin-bottom: 1.25rem;
+}
+
+.loan-modal__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.loan-modal__loans-list {
+  max-height: 10rem;
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+}
+
+.loan-modal__loan-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.loan-modal__loan-option:last-child {
+  border-bottom: none;
+}
+
+.loan-modal__loan-option:hover {
+  background: #f8fafc;
+}
+
+.loan-modal__loan-option--selected {
+  background: #f0fdf4;
+}
+
+.loan-modal__checkbox {
+  width: 1.125rem;
+  height: 1.125rem;
+  accent-color: #22c55e;
+  cursor: pointer;
+}
+
+.loan-modal__loan-info {
+  flex: 1;
+}
+
+.loan-modal__loan-name {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.loan-modal__loan-date {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+}
+
+.loan-modal__loan-amount {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ea580c;
+}
+
+.loan-modal__total {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-radius: 0.5rem;
+  padding: 0.875rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #bfdbfe;
+}
+
+.loan-modal__total-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #1e40af;
+}
+
+.loan-modal__total-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1d4ed8;
+}
+
+.loan-modal__input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #1e293b;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.loan-modal__input:focus {
+  outline: none;
+  border-color: #22c55e;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.loan-modal__input-hint {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+  margin-top: 0.375rem;
+}
+
+.loan-modal__textarea {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #1e293b;
+  background: #f8fafc;
+  resize: vertical;
+  min-height: 5rem;
+  transition: all 0.2s ease;
+}
+
+.loan-modal__textarea:focus {
+  outline: none;
+  border-color: #22c55e;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.loan-modal__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.loan-modal__cancel-btn {
+  flex: 1;
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.loan-modal__cancel-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.loan-modal__submit-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
+}
+
+.loan-modal__submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.35);
+}
+
+.loan-modal__submit-btn:disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.loan-modal__submit-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 640px) {
+  .cobros-page__container {
+    padding: 1rem;
+  }
+
+  .cobros-page__title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.875rem;
+  }
+
+  .cobros-page__search-form {
+    flex-direction: column;
+  }
+
+  .cobros-page__search-btn,
+  .cobros-page__clear-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .customer-card__header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .customer-card__badge {
+    flex-direction: row;
+    gap: 0.5rem;
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .cobros-page__container {
+    padding: 0.75rem;
+  }
+
+  .cobros-page__title-section {
+    padding: 1rem;
+  }
+
+  .cobros-page__title {
+    font-size: 1.0625rem;
+  }
+
+  .cobros-page__stats-badge {
+    padding: 0.375rem 0.75rem;
+  }
+
+  .cobros-page__stats-value {
+    font-size: 1rem;
+  }
+
+  .cobros-page__search {
+    padding: 0.75rem;
+  }
+
+  .customer-card {
+    padding: 0.875rem;
+  }
+
+  .customer-card__badge-value {
+    font-size: 1.25rem;
+  }
+
+  .loan-modal {
+    max-width: 100%;
+    border-radius: 0.75rem 0.75rem 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .loan-modal__overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .loan-modal__actions {
+    flex-direction: column;
+  }
+}

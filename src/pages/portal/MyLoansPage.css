@@ -1,0 +1,101 @@
+.my-loans-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.my-loans-page__loading {
+  text-align: center;
+  padding: 60px;
+  font-size: 18px;
+  color: white;
+}
+
+.my-loans-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.my-loans-page__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.my-loans-page__back {
+  padding: 10px 20px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  color: #667eea;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.my-loans-page__back:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.my-loans-page__info {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.my-loans-page__info-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.my-loans-page__info-text {
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .my-loans-page__title {
+    font-size: 24px;
+  }
+
+  .my-loans-page__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .my-loans-page__back {
+    width: 100%;
+    text-align: center;
+  }
+
+  .my-loans-page__info {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .my-loans-page__title {
+    font-size: 20px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .my-loans-page__info {
+    padding: 16px;
+  }
+
+  .my-loans-page__info-text {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}
