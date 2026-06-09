@@ -233,6 +233,105 @@
   background: #2563eb;
 }
 
+/* === Acciones nativas (APK) === */
+
+.osinergmin-doc__native-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px 24px;
+  background: #f9fafb;
+}
+
+.osinergmin-doc__action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  font-family: inherit;
+  min-height: 48px;
+}
+
+.osinergmin-doc__action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.osinergmin-doc__action-btn--primary {
+  background: #2563eb;
+  color: white;
+}
+
+.osinergmin-doc__action-btn--primary:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.osinergmin-doc__action-btn--secondary {
+  background: white;
+  color: #2563eb;
+  border: 1.5px solid #2563eb;
+}
+
+.osinergmin-doc__action-btn--secondary:hover:not(:disabled) {
+  background: #eff6ff;
+}
+
+.osinergmin-doc__btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: osinergmin-spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+/* === Toast === */
+
+.portal-osinergmin-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+  text-align: center;
+  animation: osinergmin-toast-in 0.25s ease;
+}
+
+.portal-osinergmin-toast--success {
+  background: #10b981;
+  color: white;
+}
+
+.portal-osinergmin-toast--error {
+  background: #ef4444;
+  color: white;
+}
+
+@keyframes osinergmin-toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 /* === Fallback (tipo no soportado) === */
 
 .osinergmin-doc__fallback {

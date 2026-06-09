@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import './ReferralShareCard.css';
 
+// URL pública canónica del frontend para compartir links.
+// En el APK (Capacitor) window.location.origin es "https://localhost", por eso
+// se prioriza VITE_PUBLIC_WEB_URL inyectada en build-time. Fallback al dominio
+// de producción para que un link compartido siempre sea válido aunque la
+// variable no se haya definido en el entorno de build.
+const PUBLIC_WEB_URL =
+  (import.meta.env && import.meta.env.VITE_PUBLIC_WEB_URL) ||
+  'https://aloganagas.com.pe';
+
 export const ReferralShareCard = ({ code }) => {
   const [copiedCode, setCopiedCode] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
 
   // Generar link de registro con codigo de referido
-  const referralLink = `${window.location.origin}/login?ref=${code}`;
+  const referralLink = `${PUBLIC_WEB_URL}/login?ref=${code}`;
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText(code);

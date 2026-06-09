@@ -520,6 +520,8 @@
   font-size: 0.7rem;
   color: #16a34a;
   transition: all 0.2s;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .order-detail__mixed-voucher-link:hover {
@@ -577,78 +579,7 @@
   font-weight: 500;
 }
 
-/* Voucher Modal */
-.order-detail__voucher-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 20px;
-}
-
-.order-detail__voucher-modal-content {
-  position: relative;
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  max-width: 90vw;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.order-detail__voucher-modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #ef4444;
-  color: white;
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  z-index: 10;
-}
-
-.order-detail__voucher-modal-close:hover {
-  background: #dc2626;
-}
-
-.order-detail__voucher-modal-image {
-  max-width: 100%;
-  max-height: calc(90vh - 100px);
-  border-radius: 8px;
-  object-fit: contain;
-}
-
-.order-detail__voucher-download {
-  margin-top: 16px;
-  padding: 10px 20px;
-  background: #3b82f6;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: background 0.2s;
-}
-
-.order-detail__voucher-download:hover {
-  background: #2563eb;
-}
+/* Modal de vista previa de archivos: ver styles/components/documentPreviewModal.css */
 
 /* ============================================================
    RESPONSIVE - Experiencia tipo App Nativa (Capacitor/APK)
@@ -905,10 +836,6 @@
   }
 
   /* Voucher */
-  .order-detail__voucher-modal {
-    padding: 12px;
-  }
-
   .order-detail__voucher-thumbnail {
     max-width: 160px;
     max-height: 160px;
@@ -1076,10 +1003,6 @@
   .order-detail__voucher-thumbnail {
     max-width: 120px;
     max-height: 120px;
-  }
-
-  .order-detail__voucher-modal {
-    padding: 8px;
   }
 
   /* Container notice compacto */

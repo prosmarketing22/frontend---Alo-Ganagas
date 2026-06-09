@@ -1,64 +1,30 @@
 import { useState, useEffect } from 'react';
 import { usePortalApi } from '../../hooks/useApi/usePortalApi';
 import { portalService } from '../../services/portalService';
+import { DocumentPreviewModal } from '../../components/portal/DocumentPreviewModal';
 import '../../styles/pages/portal/osinergminPage.css';
 
-const InlineDocumentViewer = ({ document }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [blobUrl, setBlobUrl] = useState(null);
-  const [contentType, setContentType] = useState(null);
+/**
+ * Tarjeta de documento — botón "Ver" abre el modal de preview inline (web y APK),
+ * botón "Descargar" hace la descarga manual.
+ */
+const DocumentItem = ({ document, onPreview, onError, onSuccess }) => {
+  const [downloading, setDownloading] = useState(false);
 
-  useEffect(() => {
-    let revoke = null;
-    const load = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const { blob, contentType: type } = await portalService.getPreviewBlob(document.id);
-        const url = URL.createObjectURL(blob);
-        revoke = url;
-        setBlobUrl(url);
-        setContentType(type);
-      } catch (err) {
-        console.error('Error loading document:', err);
-        setError('Error al cargar el documento');
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
-    return () => {
-      if (revoke) URL.revokeObjectURL(revoke);
-    };
-  }, [document.id]);
-
-  const handleDownload = async (e) => {
-    e.stopPropagation();
+  const handleDownload = async () => {
+    setDownloading(true);
     try {
-      await portalService.downloadDocument(document.id);
+      await portalService.downloadDocument(document.id, {
+        fileNameHint: document.file_name || document.fileName || document.title
+      });
+      if (onSuccess) onSuccess('Descargado correctamente');
     } catch (err) {
-      console.error('Error downloading:', err);
+      console.error('Error descargando:', err);
+      if (onError) onError(err.message || 'Error al descargar');
+    } finally {
+      setDownloading(false);
     }
   };
-
-  const handleRetry = () => {
-    setBlobUrl(null);
-    setError(null);
-    setLoading(true);
-    portalService.getPreviewBlob(document.id)
-      .then(({ blob, contentType: type }) => {
-        const url = URL.createObjectURL(blob);
-        setBlobUrl(url);
-        setContentType(type);
-      })
-      .catch(() => setError('Error al cargar el documento'))
-      .finally(() => setLoading(false));
-  };
-
-  const fileType = contentType || document.fileType || document.file_type || '';
-  const isImage = fileType.includes('image');
-  const isPdf = fileType.includes('pdf');
 
   return (
     <div className="osinergmin-doc">
@@ -69,70 +35,40 @@ const InlineDocumentViewer = ({ document }) => {
             <p className="osinergmin-doc__description">{document.description}</p>
           )}
         </div>
-        <button
-          className="osinergmin-doc__download-btn"
-          onClick={handleDownload}
-          title="Descargar documento"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="7 10 12 15 17 10" />
-            <line x1="12" y1="15" x2="12" y2="3" />
-          </svg>
-          <span>Descargar</span>
-        </button>
       </div>
 
-      <div className="osinergmin-doc__viewer">
-        {loading && (
-          <div className="osinergmin-doc__loading">
-            <div className="osinergmin-doc__spinner"></div>
-            <p>Cargando documento...</p>
-          </div>
-        )}
-
-        {error && !loading && (
-          <div className="osinergmin-doc__error">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="8" x2="12" y2="12" />
-              <line x1="12" y1="16" x2="12.01" y2="16" />
-            </svg>
-            <p>{error}</p>
-            <button className="osinergmin-doc__retry-btn" onClick={handleRetry}>
-              Reintentar
-            </button>
-          </div>
-        )}
-
-        {!loading && !error && blobUrl && isPdf && (
-          <iframe
-            src={blobUrl}
-            className="osinergmin-doc__iframe"
-            title={document.title}
-          />
-        )}
-
-        {!loading && !error && blobUrl && isImage && (
-          <img
-            src={blobUrl}
-            alt={document.title}
-            className="osinergmin-doc__image"
-          />
-        )}
-
-        {!loading && !error && blobUrl && !isPdf && !isImage && (
-          <div className="osinergmin-doc__fallback">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
-              <polyline points="13 2 13 9 20 9" />
-            </svg>
-            <p>Este tipo de archivo no se puede previsualizar</p>
-            <button className="osinergmin-doc__download-btn" onClick={handleDownload}>
-              Descargar archivo
-            </button>
-          </div>
-        )}
+      <div className="osinergmin-doc__native-actions">
+        <button
+          className="osinergmin-doc__action-btn osinergmin-doc__action-btn--primary"
+          onClick={() => onPreview(document)}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          Ver documento
+        </button>
+        <button
+          className="osinergmin-doc__action-btn osinergmin-doc__action-btn--secondary"
+          onClick={handleDownload}
+          disabled={downloading}
+        >
+          {downloading ? (
+            <>
+              <span className="osinergmin-doc__btn-spinner" />
+              Descargando...
+            </>
+          ) : (
+            <>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Descargar
+            </>
+          )}
+        </button>
       </div>
     </div>
   );
@@ -141,10 +77,18 @@ const InlineDocumentViewer = ({ document }) => {
 export const OsinergminPage = () => {
   const { getOsinergminDocuments, loading, error } = usePortalApi();
   const [documents, setDocuments] = useState([]);
+  const [toast, setToast] = useState(null);
+  const [previewDoc, setPreviewDoc] = useState(null);
 
   useEffect(() => {
     loadDocuments();
   }, []);
+
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 3500);
+    return () => clearTimeout(t);
+  }, [toast]);
 
   const loadDocuments = async () => {
     try {
@@ -159,6 +103,9 @@ export const OsinergminPage = () => {
       console.error('Error loading documents:', err);
     }
   };
+
+  const handleError = (msg) => setToast({ type: 'error', message: typeof msg === 'string' ? msg : (msg?.message || 'Error') });
+  const handleSuccess = (msg) => setToast({ type: 'success', message: msg });
 
   return (
     <div className="portal-osinergmin-page">
@@ -177,6 +124,12 @@ export const OsinergminPage = () => {
             <line x1="12" y1="16" x2="12.01" y2="16" />
           </svg>
           {error}
+        </div>
+      )}
+
+      {toast && (
+        <div className={`portal-osinergmin-toast portal-osinergmin-toast--${toast.type}`}>
+          {toast.message}
         </div>
       )}
 
@@ -200,10 +153,22 @@ export const OsinergminPage = () => {
       {!loading && documents.length > 0 && (
         <div className="portal-osinergmin-list">
           {documents.map((doc) => (
-            <InlineDocumentViewer key={doc.id} document={doc} />
+            <DocumentItem
+              key={doc.id}
+              document={doc}
+              onPreview={setPreviewDoc}
+              onError={handleError}
+              onSuccess={handleSuccess}
+            />
           ))}
         </div>
       )}
+
+      <DocumentPreviewModal
+        isOpen={!!previewDoc}
+        document={previewDoc}
+        onClose={() => setPreviewDoc(null)}
+      />
     </div>
   );
 };

@@ -25,6 +25,7 @@ export const usePushNotifications = ({ onNavigate } = {}) => {
     const setup = async () => {
       const { PushNotifications } = await import('@capacitor/push-notifications');
 
+      // Verificar permisos. En Android 13+ requiere permiso runtime POST_NOTIFICATIONS.
       const perm = await PushNotifications.checkPermissions();
       let status = perm.receive;
       if (status === 'prompt' || status === 'prompt-with-rationale') {
@@ -34,6 +35,26 @@ export const usePushNotifications = ({ onNavigate } = {}) => {
       if (status !== 'granted') {
         console.warn('[push] Permiso denegado por el usuario');
         return;
+      }
+
+      // Crear canal de notificaciones explícitamente (alta prioridad, sonido, vibración).
+      // Esto garantiza que la notificación se muestre con la app cerrada.
+      try {
+        if (PushNotifications.createChannel) {
+          await PushNotifications.createChannel({
+            id: 'aloganagas_default',
+            name: 'Notificaciones Aló Ganagas',
+            description: 'Pedidos, GANAGAS y mantenimiento',
+            importance: 5, // MAX (Heads-up + sonido + vibración)
+            visibility: 1, // PUBLIC
+            sound: 'default',
+            vibration: true,
+            lights: true,
+            lightColor: '#3B82F6'
+          });
+        }
+      } catch (err) {
+        console.warn('[push] createChannel fallo (no crítico):', err?.message);
       }
 
       listeners.push(

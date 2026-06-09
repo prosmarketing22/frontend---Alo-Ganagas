@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { getUploadUrl } from '../../config/api.config';
+import { FilePreviewModal } from '../common/FilePreviewModal';
 import './OrderDetail.css';
 
 const STATUS_CONFIG = {
@@ -30,8 +31,13 @@ const getVoucherUrl = (voucherPath) => {
 };
 
 export const OrderDetail = ({ order, onClose, onConfirm, onAssign, onInTransit, onDeliver, onCancel }) => {
-  const [showVoucherModal, setShowVoucherModal] = useState(false);
-  const [showDeliveryVoucherModal, setShowDeliveryVoucherModal] = useState(false);
+  const [previewFile, setPreviewFile] = useState(null);
+
+  const openPreview = (url, title) => {
+    if (!url) return;
+    const fileName = (url.split('/').pop() || 'comprobante').split('?')[0];
+    setPreviewFile({ fileUrl: url, fileName, title });
+  };
 
   if (!order) return null;
 
@@ -266,7 +272,7 @@ export const OrderDetail = ({ order, onClose, onConfirm, onAssign, onInTransit, 
           <div className="order-detail__section">
             <h3>Voucher de Pago</h3>
             <div className="order-detail__voucher">
-              <div className="order-detail__voucher-preview" onClick={() => setShowVoucherModal(true)}>
+              <div className="order-detail__voucher-preview" onClick={() => openPreview(voucherUrl, 'Voucher de Pago')}>
                 <img
                   src={voucherUrl}
                   alt="Voucher de pago"
@@ -339,10 +345,9 @@ export const OrderDetail = ({ order, onClose, onConfirm, onAssign, onInTransit, 
                         <span className="order-detail__mixed-amount">{formatMoney(payment.amount)}</span>
                       </div>
                       {payment.voucher_path && (
-                        <a
-                          href={getVoucherUrl(payment.voucher_path)}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <button
+                          type="button"
+                          onClick={() => openPreview(getVoucherUrl(payment.voucher_path), `Voucher ${payment.method}`)}
                           className="order-detail__mixed-voucher-link"
                         >
                           <img
@@ -351,7 +356,7 @@ export const OrderDetail = ({ order, onClose, onConfirm, onAssign, onInTransit, 
                             className="order-detail__mixed-voucher-thumb"
                           />
                           <span>Ver voucher</span>
-                        </a>
+                        </button>
                       )}
                     </div>
                   ))}
@@ -362,7 +367,7 @@ export const OrderDetail = ({ order, onClose, onConfirm, onAssign, onInTransit, 
             {order.actual_payment_method !== 'MIXTO' && deliveryVoucherUrl && (
               <div className="order-detail__voucher" style={{ marginTop: '12px' }}>
                 <p className="order-detail__voucher-label">Comprobante de Pago (Repartidor):</p>
-                <div className="order-detail__voucher-preview" onClick={() => setShowDeliveryVoucherModal(true)}>
+                <div className="order-detail__voucher-preview" onClick={() => openPreview(deliveryVoucherUrl, 'Comprobante de Entrega')}>
                   <img
                     src={deliveryVoucherUrl}
                     alt="Comprobante de entrega"
@@ -432,59 +437,14 @@ export const OrderDetail = ({ order, onClose, onConfirm, onAssign, onInTransit, 
         )}
       </div>
 
-      {/* Modal del Voucher del Cliente */}
-      {showVoucherModal && voucherUrl && (
-        <div className="order-detail__voucher-modal" onClick={() => setShowVoucherModal(false)}>
-          <div className="order-detail__voucher-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="order-detail__voucher-modal-close"
-              onClick={() => setShowVoucherModal(false)}
-            >
-              &times;
-            </button>
-            <img
-              src={voucherUrl}
-              alt="Voucher de pago"
-              className="order-detail__voucher-modal-image"
-            />
-            <a
-              href={voucherUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="order-detail__voucher-download"
-            >
-              Abrir en nueva pestaña
-            </a>
-          </div>
-        </div>
-      )}
-
-      {/* Modal del Comprobante del Repartidor */}
-      {showDeliveryVoucherModal && deliveryVoucherUrl && (
-        <div className="order-detail__voucher-modal" onClick={() => setShowDeliveryVoucherModal(false)}>
-          <div className="order-detail__voucher-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="order-detail__voucher-modal-close"
-              onClick={() => setShowDeliveryVoucherModal(false)}
-            >
-              &times;
-            </button>
-            <img
-              src={deliveryVoucherUrl}
-              alt="Comprobante de entrega"
-              className="order-detail__voucher-modal-image"
-            />
-            <a
-              href={deliveryVoucherUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="order-detail__voucher-download"
-            >
-              Abrir en nueva pestaña
-            </a>
-          </div>
-        </div>
-      )}
+      {/* Modal universal de vista previa de archivo (imagen o PDF) */}
+      <FilePreviewModal
+        isOpen={!!previewFile}
+        onClose={() => setPreviewFile(null)}
+        fileUrl={previewFile?.fileUrl}
+        fileName={previewFile?.fileName}
+        title={previewFile?.title}
+      />
     </div>
   );
 };

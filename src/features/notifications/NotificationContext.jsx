@@ -27,45 +27,53 @@ export const NotificationProvider = ({ children }) => {
 
     const socket = socketContext.socket;
 
-    // Actualizar contador cuando se recibe del servidor
+    // Deduplicación: insertar solo si el id no existe en la lista
+    const insertIfNew = (notif) => {
+      if (!notif) return;
+      setNotifications(prev => {
+        if (notif.id != null && prev.some(n => n.id === notif.id)) return prev;
+        return [notif, ...prev];
+      });
+      // Solo incrementar contador si NO es un duplicado conocido
+      setUnreadCount(prev => prev + 1);
+    };
+
+    // Actualizar contador cuando se recibe del servidor (valor absoluto)
     const handleUnreadCountUpdate = (data) => {
-      setUnreadCount(data.count);
-    };
-
-    // Agregar nueva notificacion a la lista
-    const handleNewNotification = (data) => {
-      if (data.notification) {
-        setNotifications(prev => [data.notification, ...prev]);
-        setUnreadCount(prev => prev + 1);
+      if (typeof data?.count === 'number') {
+        setUnreadCount(data.count);
       }
     };
 
-    // Agregar notificacion de llegada a la lista
-    const handleArrivalNotification = (data) => {
-      if (data.notification) {
-        setNotifications(prev => [data.notification, ...prev]);
-        setUnreadCount(prev => prev + 1);
-      }
-    };
+    const handleNewNotification = (data) => insertIfNew(data?.notification);
+    const handleArrivalNotification = (data) => insertIfNew(data?.notification);
+    const handleNewOrderAlert = (data) => insertIfNew(data?.notification);
 
-    // Agregar alerta de nuevo pedido a la lista de notificaciones
-    const handleNewOrderAlert = (data) => {
-      if (data.notification) {
-        setNotifications(prev => [data.notification, ...prev]);
-        setUnreadCount(prev => prev + 1);
-      }
+    // Al reconectar el socket, resincronizar el contador desde el servidor.
+    // Esto recupera notificaciones que llegaron con la app cerrada / sin conexión.
+    const handleReconnect = () => {
+      console.log('[NotificationContext] Socket reconectado: resincronizando');
+      notificationService.getUnreadCount()
+        .then(response => {
+          if (response?.data?.count != null) {
+            setUnreadCount(response.data.count);
+          }
+        })
+        .catch(err => console.warn('[NotificationContext] Error resync unread:', err?.message));
     };
 
     socket.on('unread_count_update', handleUnreadCountUpdate);
     socket.on('new_notification', handleNewNotification);
     socket.on('arrival_notification', handleArrivalNotification);
     socket.on('new_order_alert', handleNewOrderAlert);
+    socket.on('connect', handleReconnect);
 
     return () => {
       socket.off('unread_count_update', handleUnreadCountUpdate);
       socket.off('new_notification', handleNewNotification);
       socket.off('arrival_notification', handleArrivalNotification);
       socket.off('new_order_alert', handleNewOrderAlert);
+      socket.off('connect', handleReconnect);
     };
   }, [socketContext?.socket]);
 

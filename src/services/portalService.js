@@ -1,4 +1,5 @@
 import { apiClient } from './apiClient.js';
+import { openBlobInNativeApp, downloadBlobWeb, isNativePlatform } from '../utils/nativeFile.js';
 
 const BASE_ENDPOINT = '/portal';
 
@@ -81,16 +82,52 @@ export const portalService = {
     return this.getDocumentBlob(id, 'preview');
   },
 
-  async downloadDocument(id) {
-    const { blob, fileName } = await this.getDocumentBlob(id, 'download');
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = fileName || 'documento';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+  /**
+   * Visualizar documento.
+   * - Nativo (APK): descarga a cache y abre con la app externa del sistema.
+   * - Web: descarga el blob y devuelve {blob, contentType, fileName} para que el caller
+   *   lo renderice inline (iframe/img). Si no hay caller que lo use, hace download web.
+   */
+  async openDocument(id, { fallbackToDownload = true, fileNameHint = null } = {}) {
+    const result = await this.getDocumentBlob(id, 'preview');
+    const fileName = result.fileName || fileNameHint || 'documento';
+
+    if (isNativePlatform()) {
+      await openBlobInNativeApp({
+        blob: result.blob,
+        fileName,
+        contentType: result.contentType
+      });
+      return { opened: true, ...result, fileName };
+    }
+
+    if (fallbackToDownload) {
+      // En web devolvemos los datos al caller — no descargamos automáticamente.
+      return { opened: false, ...result, fileName };
+    }
+    return { opened: false, ...result, fileName };
+  },
+
+  /**
+   * Descargar documento.
+   * - Nativo (APK): escribe en cache y abre con la app externa (el usuario puede guardar/compartir).
+   * - Web: dispara descarga del navegador via <a download>.
+   */
+  async downloadDocument(id, { fileNameHint = null } = {}) {
+    const result = await this.getDocumentBlob(id, 'download');
+    const fileName = result.fileName || fileNameHint || 'documento';
+
+    if (isNativePlatform()) {
+      await openBlobInNativeApp({
+        blob: result.blob,
+        fileName,
+        contentType: result.contentType
+      });
+      return { saved: true, fileName };
+    }
+
+    downloadBlobWeb({ blob: result.blob, fileName });
+    return { saved: true, fileName };
   }
 };
 
