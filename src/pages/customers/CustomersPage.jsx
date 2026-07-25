@@ -38,7 +38,8 @@ export const CustomersPage = () => {
     search: '',
     customer_type: '',
     loyalty_level: '',
-    status: ''
+    status: '',
+    follow_up: ''
   });
 
   const debouncedSearch = useDebounce(filters.search, 300);
@@ -54,7 +55,7 @@ export const CustomersPage = () => {
       return;
     }
     loadCustomers({ page: 1 });
-  }, [debouncedSearch, filters.customer_type, filters.loyalty_level, filters.status]);
+  }, [debouncedSearch, filters.customer_type, filters.loyalty_level, filters.status, filters.follow_up]);
 
   const loadCustomers = async (params = {}) => {
     try {
@@ -276,6 +277,20 @@ export const CustomersPage = () => {
                   <option value="">Todos los estados</option>
                   <option value="active">Activo</option>
                   <option value="inactive">Inactivo</option>
+                </select>
+              </div>
+
+              <div className="customers-filter-group">
+                <label className="customers-filter-label">Seguimiento</label>
+                <select
+                  name="follow_up"
+                  value={filters.follow_up}
+                  onChange={handleFilterChange}
+                  className="customers-filter-select"
+                >
+                  <option value="">Todos</option>
+                  <option value="stale">Sin compras recientes</option>
+                  <option value="ok">Al dia</option>
                 </select>
               </div>
             </div>

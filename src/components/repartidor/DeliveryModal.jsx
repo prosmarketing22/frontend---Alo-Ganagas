@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import repartidorService from '../../services/repartidorService';
 import { ModalAlerta } from '../common/ModalAlerta';
 import { getContainerLabel } from '../../utils/constants';
+import { prepareVoucherFile } from '../../utils/imageCompression';
 import './DeliveryModal.css';
 
 const METHOD_LABELS = {
@@ -284,20 +285,13 @@ export const DeliveryModal = ({ delivery, onConfirm, onClose, loading, mode = 'd
     }
   }, [amountPaid, paymentMethod, finalAmountToPay]);
 
-  const handleVoucherChange = (method, e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-      if (!allowedTypes.includes(file.type)) {
-        alert('Solo se permiten imagenes (JPEG, PNG, WEBP)');
-        e.target.value = '';
-        return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-        alert('La imagen no debe superar 5MB');
-        e.target.value = '';
-        return;
-      }
+  // Sin restriccion de peso: las fotos grandes se recomprimen en el cliente.
+  const handleVoucherChange = async (method, e) => {
+    const rawFile = e.target.files[0];
+    if (!rawFile) return;
+    const inputEl = e.target;
+    try {
+      const file = await prepareVoucherFile(rawFile);
 
       // Limpiar preview anterior si existe
       if (voucherPreviews[method]) {
@@ -306,6 +300,9 @@ export const DeliveryModal = ({ delivery, onConfirm, onClose, loading, mode = 'd
 
       setVouchers(prev => ({ ...prev, [method]: file }));
       setVoucherPreviews(prev => ({ ...prev, [method]: URL.createObjectURL(file) }));
+    } catch (err) {
+      console.error('Error procesando voucher:', err);
+      if (inputEl) inputEl.value = '';
     }
   };
 
@@ -326,20 +323,13 @@ export const DeliveryModal = ({ delivery, onConfirm, onClose, loading, mode = 'd
   };
 
   // Funciones para vouchers de cobro de deuda
-  const handleDebtVoucherChange = (method, e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-      if (!allowedTypes.includes(file.type)) {
-        alert('Solo se permiten imagenes (JPEG, PNG, WEBP)');
-        e.target.value = '';
-        return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-        alert('La imagen no debe superar 5MB');
-        e.target.value = '';
-        return;
-      }
+  // Sin restriccion de peso: las fotos grandes se recomprimen en el cliente.
+  const handleDebtVoucherChange = async (method, e) => {
+    const rawFile = e.target.files[0];
+    if (!rawFile) return;
+    const inputEl = e.target;
+    try {
+      const file = await prepareVoucherFile(rawFile);
 
       if (debtVoucherPreviews[method]) {
         URL.revokeObjectURL(debtVoucherPreviews[method]);
@@ -347,6 +337,9 @@ export const DeliveryModal = ({ delivery, onConfirm, onClose, loading, mode = 'd
 
       setDebtVouchers(prev => ({ ...prev, [method]: file }));
       setDebtVoucherPreviews(prev => ({ ...prev, [method]: URL.createObjectURL(file) }));
+    } catch (err) {
+      console.error('Error procesando voucher:', err);
+      if (inputEl) inputEl.value = '';
     }
   };
 
@@ -1152,7 +1145,7 @@ export const DeliveryModal = ({ delivery, onConfirm, onClose, loading, mode = 'd
                                         <label className="delivery-modal__voucher-dropzone-mini">
                                           <input
                                             type="file"
-                                            accept="image/jpeg,image/jpg,image/png,image/webp"
+                                            accept="image/*"
                                             onChange={(e) => handleDebtVoucherChange(payment.method, e)}
                                             className="delivery-modal__voucher-input"
                                           />
@@ -1260,7 +1253,7 @@ export const DeliveryModal = ({ delivery, onConfirm, onClose, loading, mode = 'd
                               <label className="delivery-modal__voucher-dropzone">
                                 <input
                                   type="file"
-                                  accept="image/jpeg,image/jpg,image/png,image/webp"
+                                  accept="image/*"
                                   onChange={(e) => handleDebtVoucherChange(debtPaymentMethod, e)}
                                   className="delivery-modal__voucher-input"
                                 />
@@ -1616,7 +1609,7 @@ export const DeliveryModal = ({ delivery, onConfirm, onClose, loading, mode = 'd
                           <label className="delivery-modal__voucher-dropzone-mini">
                             <input
                               type="file"
-                              accept="image/jpeg,image/jpg,image/png,image/webp"
+                              accept="image/*"
                               onChange={(e) => handleVoucherChange(payment.method, e)}
                               className="delivery-modal__voucher-input"
                             />
@@ -1745,7 +1738,7 @@ export const DeliveryModal = ({ delivery, onConfirm, onClose, loading, mode = 'd
                   <label className="delivery-modal__voucher-dropzone">
                     <input
                       type="file"
-                      accept="image/jpeg,image/jpg,image/png,image/webp"
+                      accept="image/*"
                       onChange={(e) => handleVoucherChange(paymentMethod, e)}
                       className="delivery-modal__voucher-input"
                     />

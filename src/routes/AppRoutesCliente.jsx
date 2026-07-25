@@ -4,6 +4,7 @@
 // ============================================================
 import { HashRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { LoginPage } from '../pages/auth/LoginPage';
+import { LegalPage } from '../pages/legal/LegalPage';
 import { PortalLayout } from '../components/layout/PortalLayout';
 import { MainLayout } from '../components/layout/MainLayout';
 import ProtectedRoute from '../components/common/ProtectedRoute';
@@ -70,6 +71,10 @@ export const AppRoutesCliente = () => {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
+
+        {/* Politica de Privacidad y Terminos - PUBLICO (sin login) */}
+        <Route path="/legal" element={<LegalPage />} />
+        <Route path="/legal/:type" element={<LegalPage />} />
 
         {/* Portal CLIENTE */}
         <Route path="/portal" element={portalRoute(<PortalHomePage />)} />

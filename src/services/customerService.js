@@ -13,6 +13,7 @@ export const customerService = {
     if (params.loyalty_level) queryParams.append('loyalty_level', params.loyalty_level);
     if (params.status) queryParams.append('status', params.status);
     if (params.has_debt) queryParams.append('has_debt', params.has_debt);
+    if (params.follow_up) queryParams.append('follow_up', params.follow_up);
 
     const endpoint = BASE_ENDPOINT + (queryParams.toString() ? '?' + queryParams.toString() : '');
     return apiClient.get(endpoint);

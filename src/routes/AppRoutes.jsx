@@ -13,6 +13,8 @@ import { CollaboratorsPage } from '../pages/collaborators/CollaboratorsPage';
 import { ConfigurationsPage } from '../pages/settings/ConfigurationsPage';
 import { PaymentMethodsPage } from '../pages/settings/PaymentMethodsPage';
 import { ExpenseCategoriesPage } from '../pages/settings/ExpenseCategoriesPage';
+import { LegalDocumentsPage } from '../pages/settings/LegalDocumentsPage';
+import { LegalPage } from '../pages/legal/LegalPage';
 import { CashRegistersPage } from '../pages/cash-registers/CashRegistersPage';
 import { CustomersPage } from '../pages/customers/CustomersPage';
 import { InventoryPage } from '../pages/inventory/InventoryPage';
@@ -76,6 +78,10 @@ export const AppRoutes = () => {
         {/* Rutas publicas */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
+
+        {/* Politica de Privacidad y Terminos - PUBLICO (Google Play Console) */}
+        <Route path="/legal" element={<LegalPage />} />
+        <Route path="/legal/:type" element={<LegalPage />} />
 
         {/* ============================================== */}
         {/* RUTAS COMPARTIDAS - GERENTE y BASE */}
@@ -281,6 +287,18 @@ export const AppRoutes = () => {
             <ProtectedRoute roles={['GERENTE']}>
               <MainLayout>
                 <ExpenseCategoriesPage />
+              </MainLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Politicas y Terminos - Solo GERENTE (edicion) */}
+        <Route
+          path="/settings/legal"
+          element={
+            <ProtectedRoute roles={['GERENTE']}>
+              <MainLayout>
+                <LegalDocumentsPage />
               </MainLayout>
             </ProtectedRoute>
           }

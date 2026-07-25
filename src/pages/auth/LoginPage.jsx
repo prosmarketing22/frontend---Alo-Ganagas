@@ -2,7 +2,7 @@
 // LOGIN PAGE - Pagina de inicio de sesion y registro
 // ============================================================
 import { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { AuthLayout } from '../../components/layout/AuthLayout';
 import { LoginForm } from '../../components/auth/LoginForm';
 import { RegisterForm } from '../../components/auth/RegisterForm';
@@ -116,6 +116,17 @@ export const LoginPage = () => {
             initialReferrerCode={referrerCode}
           />
         )}
+
+        <div className="login-page__legal">
+          Al continuar aceptas nuestra{' '}
+          <Link to="/legal/privacy" className="login-page__legal-link">
+            Política de Privacidad
+          </Link>{' '}
+          y los{' '}
+          <Link to="/legal/terms" className="login-page__legal-link">
+            Términos de Uso
+          </Link>.
+        </div>
       </div>
     </AuthLayout>
   );

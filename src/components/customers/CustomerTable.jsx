@@ -10,6 +10,31 @@ export const CustomerTable = ({ data, onEdit, onDelete, onViewReferrals, onViewP
     return new Date(dateString).toLocaleDateString('es-PE');
   };
 
+  // Umbral (en dias) sin compras a partir del cual se marca "Sin compras recientes".
+  const INACTIVITY_DAYS = 30;
+
+  // Estado de seguimiento (solo informativo, NO afecta el acceso del cliente).
+  // Se calcula en vivo: si la ultima compra (o, si nunca compro, su registro)
+  // supera INACTIVITY_DAYS, se considera "Sin compras recientes".
+  const getFollowUpStatus = (customer) => {
+    const referenceDate = customer.last_purchase_date || customer.date_time_registration;
+    if (!referenceDate) {
+      return { level: 'unknown', label: 'Sin datos', days: null, hasPurchase: false };
+    }
+    const days = Math.floor((Date.now() - new Date(referenceDate).getTime()) / 86400000);
+    const hasPurchase = Boolean(customer.last_purchase_date);
+    if (days > INACTIVITY_DAYS) {
+      return { level: 'stale', label: 'Sin compras recientes', days, hasPurchase };
+    }
+    return { level: 'ok', label: 'Al dia', days, hasPurchase };
+  };
+
+  const buildFollowUpTitle = (info) => {
+    if (info.level === 'unknown') return 'Sin fecha de compra ni registro';
+    if (info.hasPurchase) return `Ultima compra hace ${info.days} dia(s)`;
+    return `Registrado hace ${info.days} dia(s), sin compras`;
+  };
+
   if (loading) {
     return (
       <div className="customers-table-loading">
@@ -42,6 +67,7 @@ export const CustomerTable = ({ data, onEdit, onDelete, onViewReferrals, onViewP
             <th>Saldo GANAGAS</th>
             <th>Referidos</th>
             <th>Estado</th>
+            <th>Seguimiento</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -100,6 +126,19 @@ export const CustomerTable = ({ data, onEdit, onDelete, onViewReferrals, onViewP
                 >
                   {customer.status === 'active' ? 'Activo' : 'Inactivo'}
                 </button>
+              </td>
+              <td>
+                {(() => {
+                  const followUp = getFollowUpStatus(customer);
+                  return (
+                    <span
+                      className={`customers-followup customers-followup--${followUp.level}`}
+                      title={buildFollowUpTitle(followUp)}
+                    >
+                      {followUp.label}
+                    </span>
+                  );
+                })()}
               </td>
               <td>
                 <div className="customers-actions">

@@ -5,6 +5,7 @@
 import { createContext, useState, useCallback, useEffect, useContext } from 'react';
 import { notificationService } from '../../services/notificationService';
 import { SocketContext } from '../socket/SocketContext';
+import { setAppBadge } from './appBadge';
 
 export const NotificationContext = createContext(null);
 
@@ -21,6 +22,14 @@ export const NotificationProvider = ({ children }) => {
     totalPages: 0
   });
 
+  // Sincronizar la burbuja del ícono del launcher con el contador de no leídas.
+  // - Llega un push / nueva notificación  -> unreadCount sube  -> burbuja aparece.
+  // - Se marca como leída (una o todas)   -> unreadCount baja  -> burbuja se actualiza/desaparece.
+  // - Al abrir/reconectar la app se resincroniza desde el servidor.
+  useEffect(() => {
+    setAppBadge(unreadCount);
+  }, [unreadCount]);
+
   // Escuchar eventos de WebSocket para actualizaciones en tiempo real
   useEffect(() => {
     if (!socketContext?.socket) return;
@@ -30,12 +39,17 @@ export const NotificationProvider = ({ children }) => {
     // Deduplicación: insertar solo si el id no existe en la lista
     const insertIfNew = (notif) => {
       if (!notif) return;
+      let inserted = false;
       setNotifications(prev => {
         if (notif.id != null && prev.some(n => n.id === notif.id)) return prev;
+        inserted = true;
         return [notif, ...prev];
       });
-      // Solo incrementar contador si NO es un duplicado conocido
-      setUnreadCount(prev => prev + 1);
+      // Solo incrementar contador si realmente se insertó (no era duplicado).
+      // El valor absoluto que llega luego en 'unread_count_update' lo corrige igual.
+      if (inserted) {
+        setUnreadCount(prev => prev + 1);
+      }
     };
 
     // Actualizar contador cuando se recibe del servidor (valor absoluto)
@@ -48,8 +62,9 @@ export const NotificationProvider = ({ children }) => {
     const handleNewNotification = (data) => insertIfNew(data?.notification);
     const handleArrivalNotification = (data) => insertIfNew(data?.notification);
     const handleNewOrderAlert = (data) => insertIfNew(data?.notification);
+    const handleNewMaintenanceAlert = (data) => insertIfNew(data?.notification);
 
-    // Al reconectar el socket, resincronizar el contador desde el servidor.
+    // Al reconectar el socket, resincronizar contador Y lista desde el servidor.
     // Esto recupera notificaciones que llegaron con la app cerrada / sin conexión.
     const handleReconnect = () => {
       console.log('[NotificationContext] Socket reconectado: resincronizando');
@@ -60,12 +75,22 @@ export const NotificationProvider = ({ children }) => {
           }
         })
         .catch(err => console.warn('[NotificationContext] Error resync unread:', err?.message));
+      // Resincronizar también la lista (no solo el contador) para que el
+      // dropdown muestre los ítems llegados mientras estuvo offline.
+      notificationService.getAll({ limit: 20 })
+        .then(response => {
+          if (Array.isArray(response?.data)) {
+            setNotifications(response.data);
+          }
+        })
+        .catch(err => console.warn('[NotificationContext] Error resync lista:', err?.message));
     };
 
     socket.on('unread_count_update', handleUnreadCountUpdate);
     socket.on('new_notification', handleNewNotification);
     socket.on('arrival_notification', handleArrivalNotification);
     socket.on('new_order_alert', handleNewOrderAlert);
+    socket.on('new_maintenance_alert', handleNewMaintenanceAlert);
     socket.on('connect', handleReconnect);
 
     return () => {
@@ -73,6 +98,7 @@ export const NotificationProvider = ({ children }) => {
       socket.off('new_notification', handleNewNotification);
       socket.off('arrival_notification', handleArrivalNotification);
       socket.off('new_order_alert', handleNewOrderAlert);
+      socket.off('new_maintenance_alert', handleNewMaintenanceAlert);
       socket.off('connect', handleReconnect);
     };
   }, [socketContext?.socket]);

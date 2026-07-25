@@ -1,6 +1,6 @@
 {
   "appId": "pe.aloganagas.app",
-  "appName": "Aló Ganagas - Cliente",
+  "appName": "Aló Ganagas",
   "webDir": "dist-cliente",
   "server": {
     "androidScheme": "https",

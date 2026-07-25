@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Capacitor, CapacitorHttp } from '@capacitor/core';
 import { openBlobInNativeApp, downloadBlobWeb, isNativePlatform } from '../../utils/nativeFile';
 import '../../styles/components/documentPreviewModal.css';
+
+// pdf.js es pesado: se carga solo al abrir un PDF en APK (lazy chunk).
+const PdfCanvasViewer = lazy(() => import('./PdfCanvasViewer'));
 
 const guessMimeFromName = (name = '') => {
   const ext = name.split('.').pop()?.toLowerCase() || '';
@@ -203,8 +206,19 @@ export const FilePreviewModal = ({
             <img src={blobUrl} alt={title} className="document-preview-image" />
           )}
 
-          {!loading && !error && blobUrl && isPdf && (
-            <iframe src={blobUrl} className="document-preview-iframe" title={title} />
+          {!loading && !error && isPdf && (
+            native ? (
+              <Suspense fallback={(
+                <div className="document-preview-loading">
+                  <div className="document-preview-spinner" />
+                  <p>Cargando visor...</p>
+                </div>
+              )}>
+                <PdfCanvasViewer blob={blob} />
+              </Suspense>
+            ) : (
+              <iframe src={blobUrl} className="document-preview-iframe" title={title} />
+            )
           )}
 
           {!loading && !error && blobUrl && !isImage && !isPdf && (

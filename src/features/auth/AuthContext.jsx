@@ -4,6 +4,7 @@
 import { createContext, useState, useEffect, useCallback } from 'react';
 import authService from '../../services/authService';
 import { clearCachedPushToken } from '../notifications/usePushNotifications';
+import { clearAppBadge } from '../notifications/appBadge';
 
 export const AuthContext = createContext(null);
 
@@ -12,7 +13,11 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Verificar si hay sesion activa al cargar la app
+  // Verificar si hay sesion activa al cargar la app.
+  // REGLA: la sesion NUNCA se cierra automaticamente. Solo se cierra si el
+  // servidor rechaza EXPLICITAMENTE el token (401/403). Ante errores de red,
+  // servidor caido o cualquier otro fallo transitorio, se mantiene la sesion
+  // usando el usuario cacheado para que el app siga abierto (incluso offline).
   const checkAuth = useCallback(async () => {
     const token = localStorage.getItem('token');
 
@@ -21,20 +26,27 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
+    // Sesion optimista: mostrar de inmediato al usuario cacheado (no espera a la red)
+    const cachedUser = authService.getCurrentUser();
+    if (cachedUser) {
+      setUser(cachedUser);
+    }
+
     try {
       const result = await authService.verify();
 
       if (result.success) {
+        // Token valido: refrescar datos del usuario
         setUser(result.data);
-      } else {
-        // Token invalido o expirado
-        localStorage.removeItem('token');
+      } else if (result.authError) {
+        // Token rechazado por el servidor (401/403): unica razon para cerrar sesion
+        authService.logout();
         setUser(null);
       }
+      // result.networkError u otro fallo transitorio: mantener la sesion cacheada
     } catch (err) {
-      console.error('Error verificando autenticacion:', err);
-      localStorage.removeItem('token');
-      setUser(null);
+      // Fallo inesperado: NO cerrar sesion, mantener la sesion cacheada
+      console.warn('No se pudo verificar la sesion (se mantiene activa):', err?.message);
     } finally {
       setLoading(false);
     }
@@ -66,12 +78,20 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Funcion de logout
-  const logout = useCallback(async () => {
-    await clearCachedPushToken();
-    localStorage.removeItem('token');
+  // Funcion de logout MANUAL
+  // La sesion se limpia de forma SINCRONA e inmediata (token + usuario + estado)
+  // para que el cierre sea instantaneo y garantizado. La limpieza del push token
+  // y del badge implica llamadas de red que en el APK pueden colgarse; por eso se
+  // hacen en segundo plano (fire-and-forget) y NUNCA bloquean ni abortan el logout.
+  const logout = useCallback(() => {
+    // 1) Limpieza sincrona: garantiza que la sesion se cierre ya mismo
+    authService.logout(); // remueve token + usuario del localStorage
     setUser(null);
     setError(null);
+
+    // 2) Limpieza best-effort en segundo plano (no bloqueante, no puede fallar el logout)
+    clearCachedPushToken().catch(() => {});
+    clearAppBadge().catch(() => {});
   }, []);
 
   // Funcion de registro

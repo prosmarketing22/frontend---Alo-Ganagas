@@ -512,3 +512,24 @@
     width: 100%;
   }
 }
+
+/* ============================================================
+   PIE LEGAL DEL LOGIN - Politica de Privacidad y Terminos
+   ============================================================ */
+.login-page__legal {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+.login-page__legal-link {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-page__legal-link:hover {
+  text-decoration: underline;
+}

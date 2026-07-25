@@ -29,10 +29,12 @@
         </provider>
 
         <!-- Canal por defecto para FCM cuando llega con la app cerrada / en background.
-             El servicio de Firebase usará este canal si el payload no especifica otro. -->
+             El servicio de Firebase usará este canal si el payload no especifica otro.
+             DEBE coincidir con PUSH_CHANNEL_ID en usePushNotifications.js y con el
+             android.notification.channelId del backend. -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="aloganagas_default" />
+            android:value="aloganagas_pedidos" />
     </application>
 
     <!-- Permissions -->

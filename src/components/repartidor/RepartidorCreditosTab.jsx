@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useCustomerCreditApi } from '../../hooks/useApi/useCustomerCreditApi';
 import repartidorService from '../../services/repartidorService';
+import { prepareVoucherFile } from '../../utils/imageCompression';
 
 const METHOD_LABELS = {
   EFECTIVO: 'Efectivo',
@@ -106,23 +107,20 @@ const CreditCollectionModal = ({ customer, assignment, onSubmit, onClose, loadin
   };
 
   // --- Voucher handlers ---
-  const handleVoucherChange = (method, e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-    if (!allowedTypes.includes(file.type)) {
-      alert('Solo se permiten imagenes (JPEG, PNG, WEBP)');
-      e.target.value = '';
-      return;
+  // Sin restriccion de peso: las fotos grandes se recomprimen en el cliente.
+  const handleVoucherChange = async (method, e) => {
+    const rawFile = e.target.files[0];
+    if (!rawFile) return;
+    const inputEl = e.target;
+    try {
+      const file = await prepareVoucherFile(rawFile);
+      if (voucherPreviews[method]) URL.revokeObjectURL(voucherPreviews[method]);
+      setVouchers(prev => ({ ...prev, [method]: file }));
+      setVoucherPreviews(prev => ({ ...prev, [method]: URL.createObjectURL(file) }));
+    } catch (err) {
+      console.error('Error procesando voucher:', err);
+      if (inputEl) inputEl.value = '';
     }
-    if (file.size > 5 * 1024 * 1024) {
-      alert('La imagen no debe superar 5MB');
-      e.target.value = '';
-      return;
-    }
-    if (voucherPreviews[method]) URL.revokeObjectURL(voucherPreviews[method]);
-    setVouchers(prev => ({ ...prev, [method]: file }));
-    setVoucherPreviews(prev => ({ ...prev, [method]: URL.createObjectURL(file) }));
   };
 
   const handleRemoveVoucher = (method) => {
@@ -349,7 +347,7 @@ const CreditCollectionModal = ({ customer, assignment, onSubmit, onClose, loadin
                           <input
                             type="file"
                             id={`voucher-mixed-${payment.method}`}
-                            accept="image/jpeg,image/jpg,image/png,image/webp"
+                            accept="image/*"
                             onChange={(e) => handleVoucherChange(payment.method, e)}
                             style={{ display: 'none' }}
                           />
@@ -436,7 +434,7 @@ const CreditCollectionModal = ({ customer, assignment, onSubmit, onClose, loadin
                       <input
                         type="file"
                         id="voucher-repartidor"
-                        accept="image/jpeg,image/jpg,image/png,image/webp"
+                        accept="image/*"
                         onChange={(e) => handleVoucherChange(paymentMethod, e)}
                         style={{ display: 'none' }}
                       />

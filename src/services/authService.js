@@ -45,8 +45,12 @@ const authService = {
   },
 
   /**
-   * Verificar token actual
-   * @returns {Promise<{success: boolean, data?: Object, error?: string}>}
+   * Verificar token actual.
+   * IMPORTANTE: este metodo NO borra el token. Distingue entre:
+   *  - authError:    el servidor rechazo el token (401/403) -> el llamador puede cerrar sesion
+   *  - networkError: fallo de red / servidor caido -> el llamador debe MANTENER la sesion
+   * La decision de cerrar sesion la toma AuthContext, no este servicio.
+   * @returns {Promise<{success: boolean, data?: Object, error?: string, authError?: boolean, networkError?: boolean}>}
    */
   async verify() {
     try {
@@ -62,17 +66,30 @@ const authService = {
         };
       }
 
+      // Respuesta OK pero sin usuario valido: se trata como token rechazado
       return {
         success: false,
+        authError: true,
         error: response.error || 'Token invalido'
       };
     } catch (error) {
-      console.error('Error verificando token:', error);
-      // Limpiar storage si el token es invalido
-      this.logout();
+      const status = error?.status;
+      const isAuthError = status === 401 || status === 403;
+
+      if (isAuthError) {
+        return {
+          success: false,
+          authError: true,
+          error: error.message || 'Token invalido o expirado'
+        };
+      }
+
+      // Error de red / servidor no disponible: NO cerrar sesion
+      console.warn('No se pudo verificar el token (fallo de red, se mantiene sesion):', error?.message);
       return {
         success: false,
-        error: error.message || 'Token invalido o expirado'
+        networkError: true,
+        error: error.message || 'No se pudo conectar con el servidor'
       };
     }
   },

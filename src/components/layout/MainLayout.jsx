@@ -53,7 +53,8 @@ const gerenteMenuItems = [
     children: [
       { path: '/settings/configurations', label: 'General' },
       { path: '/settings/payment-methods', label: 'Métodos de Pago' },
-      { path: '/settings/expense-categories', label: 'Categorías de Gastos' }
+      { path: '/settings/expense-categories', label: 'Categorías de Gastos' },
+      { path: '/settings/legal', label: 'Políticas y Términos' }
     ]
   }
 ];

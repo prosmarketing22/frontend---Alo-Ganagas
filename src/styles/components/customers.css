@@ -359,6 +359,32 @@
   box-shadow: 0 2px 4px rgba(153, 27, 27, 0.2);
 }
 
+/* Etiqueta de seguimiento (solo informativa, no afecta el acceso del cliente) */
+.customers-followup {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.customers-followup--ok {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.customers-followup--stale {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.customers-followup--unknown {
+  background: #e5e7eb;
+  color: #4b5563;
+}
+
 .customers-actions {
   display: flex;
   gap: 0.5rem;
